@@ -14,8 +14,8 @@
     <script type="module" crossorigin src="/Your_Energy/index.js"></script>
     <link rel="modulepreload" crossorigin href="/Your_Energy/assets/vendor-CaULtfQf.js">
     <link rel="modulepreload" crossorigin href="/Your_Energy/assets/header-jQzTwcZ6.js">
-    <link rel="stylesheet" crossorigin href="/Your_Energy/assets/header-BJ9gFBG1.css">
     <link rel="stylesheet" crossorigin href="/Your_Energy/assets/vendor-CKZoNpAO.css">
+    <link rel="stylesheet" crossorigin href="/Your_Energy/assets/header-BJ9gFBG1.css">
     <link rel="stylesheet" crossorigin href="/Your_Energy/assets/index-B6VLeeOu.css">
   </head>
   <body>
@@ -146,46 +146,53 @@
 
       <!-- EXERCISES -->
       <section class="exercises">
-  <div class="container">
-    <!-- make some grid magic with CSS wrapper and columns -->
-    <div class="exercises-wrapper">
-      <div class="exercises-first-column">
-        <div class="exercises-top">
-          <h2 class="exercises-title">
-            Exercises
-            <span class="selected-category" data-selected-category></span>
-          </h2>
+        <div class="container">
+          <div class="exercises-top">
+            <h2 class="exercises-title">
+              Exercises
+              <span class="selected-category" data-selected-category></span>
+            </h2>
 
-          <form class="search-form is-hidden" data-search-form>
-            <input type="text" name="search" placeholder="Search" />
-            <button type="submit">Search</button>
-          </form>
+            <form
+              class="search-form is-hidden"
+              data-search-form
+            >
+              <input
+                type="text"
+                name="search"
+                placeholder="Search"
+              />
+              <button type="submit">Search</button>
+            </form>
+          </div>
+
+          <div class="filters" data-filters>
+            <button
+              type="button"
+              data-filter="Muscles"
+              class="is-active"
+            >
+              Muscles
+            </button>
+
+            <button
+              type="button"
+              data-filter="Body parts"
+            >
+              Body parts
+            </button>
+            <button
+              type="button"
+              data-filter="Equipment"
+            >
+              Equipment
+            </button>
+          </div>
+          <ul data-categories-list></ul>
+          <ul data-exercises-list></ul>
+          <div data-pagination></div>
         </div>
-      </div>
-
-      <div class="exercises-second-column">
-        <div class="filters" data-filters>
-          <button type="button" data-filter="Muscles" class="is-active">
-            Muscles
-          </button>
-
-          <button type="button" data-filter="Body parts">
-            Body parts
-          </button>
-          <button type="button" data-filter="Equipment">
-            Equipment
-          </button>
-        </div>
-        <ul data-categories-list></ul>
-        <ul data-exercises-list></ul>
-        <div data-pagination></div>
-      </div>
-
-    </div>
-
-
-  </div>
-</section>
+      </section>
 
       <!-- QUOTE -->
       <section class="quote">
