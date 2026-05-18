@@ -1,0 +1,106 @@
+.exercises-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.exercises-sidebar {
+  width: 100%;
+}
+
+.exercises-main {
+  width: 100%;
+}
+
+.quote-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.quote-card {
+  border-radius: 20px;
+  padding: 20px;
+  background-color: #242424;
+  color: #f4f4f4;
+}
+
+.quote-title {
+  margin: 0 0 8px;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.quote-text {
+  margin: 0 0 8px;
+  font-size: 14px;
+  line-height: 1.29;
+}
+
+.quote-author {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.29;
+  font-weight: 500;
+}
+
+.quote-image-wrapper {
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.quote-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.daily-card {
+  border-radius: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+.daily-time {
+  margin: 0 0 6px;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.daily-title {
+  margin: 0 0 16px;
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 500;
+}
+
+.daily-text {
+  margin: 0;
+  color: rgba(36, 36, 36, 0.6);
+  font-size: 14px;
+  line-height: 1.29;
+}
+
+@media screen and (min-width: 768px) {
+  .exercises-content {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .exercises-sidebar {
+    width: 240px;
+    flex-shrink: 0;
+  }
+
+  .exercises-main {
+    flex-grow: 1;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .exercises-sidebar {
+    width: 444px;
+  }
+}

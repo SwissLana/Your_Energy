@@ -12,20 +12,50 @@
       </form>
     </div>
 
-    <div class="filters" data-filters>
-      <button type="button" data-filter="Muscles" class="is-active">
-        Muscles
-      </button>
+    <div class="exercises-content">
+      <aside class="exercises-sidebar">
+        <div class="quote-wrapper">
+          <div class="quote-card">
+            <div class="quote-header">
+              <h3 class="quote-title">Quote of the day</h3>
+            </div>
 
-      <button type="button" data-filter="Body parts">
-        Body parts
-      </button>
-      <button type="button" data-filter="Equipment">
-        Equipment
-      </button>
+            <p class="quote-text" data-quote-text>Loading quote...</p>
+            <p class="quote-author" data-quote-author></p>
+          </div>
+
+          <div class="daily-card">
+            <p class="daily-time">110 min</p>
+            <h3 class="daily-title">Daily norm of sports</h3>
+            <p class="daily-text">
+              The World Health Organization recommends at least 150 minutes of
+              moderate-intensity physical activity throughout the week for adults.
+              Besides that, it has been proven that physical activity improves mental
+              health, mood, and overall quality of life.
+            </p>
+          </div>
+        </div>
+      </aside>
+
+      <div class="exercises-main">
+        <div class="filters" data-filters>
+          <button type="button" data-filter="Muscles" class="is-active">
+            Muscles
+          </button>
+
+          <button type="button" data-filter="Body parts">
+            Body parts
+          </button>
+
+          <button type="button" data-filter="Equipment">
+            Equipment
+          </button>
+        </div>
+
+        <ul data-categories-list></ul>
+        <ul data-exercises-list></ul>
+        <div data-pagination></div>
+      </div>
     </div>
-    <ul data-categories-list></ul>
-    <ul data-exercises-list></ul>
-    <div data-pagination></div>
   </div>
 </section>
