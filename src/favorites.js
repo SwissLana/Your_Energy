@@ -3,10 +3,8 @@ import 'modern-normalize';
 import './css/base.css';
 import './css/common.css';
 import './css/header.css';
-import './css/hero.css';
-import './css/exercises.css';
+import './css/favorites.css';
 import './css/modal.css';
 import './css/footer.css';
 
-import './js/pages/home';
-
+import './js/pages/favorites';

@@ -1,0 +1,117 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+.exercise-modal {
+  position: relative;
+
+  width: 100%;
+  max-width: 335px;
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  padding: 40px 20px 20px;
+
+  border-radius: 20px;
+  background-color: var(--color-white);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  width: 32px;
+  height: 32px;
+
+  border: none;
+  background: transparent;
+
+  font-size: 28px;
+  line-height: 1;
+}
+
+.exercise-modal-media {
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.exercise-modal-media img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.exercise-modal-title {
+  margin-bottom: 20px;
+
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.exercise-modal-info {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 20px;
+
+  font-size: 14px;
+  color: var(--color-primary-light);
+}
+
+.exercise-modal-info span {
+  color: var(--color-primary);
+}
+
+.exercise-modal-description {
+  margin-bottom: 24px;
+  line-height: 1.5;
+  color: var(--color-primary-light);
+}
+
+.favorite-modal-btn {
+  width: 100%;
+  min-height: 48px;
+
+  border: none;
+  border-radius: 30px;
+
+  background-color: var(--color-primary);
+  color: var(--color-white);
+
+  font-weight: 500;
+
+  transition: opacity var(--transition);
+}
+
+.favorite-modal-btn:hover,
+.favorite-modal-btn:focus {
+  opacity: 0.9;
+}
+
+@media screen and (min-width: 768px) {
+  .exercise-modal {
+    max-width: 700px;
+    padding: 48px 32px 32px;
+  }
+
+  .exercise-modal-title {
+    font-size: 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .exercise-modal {
+    max-width: 900px;
+  }
+}
