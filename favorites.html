@@ -2,22 +2,33 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/Your_Energy/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Energy</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>Favorites | Your Energy</title>
+
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="/Your_Energy/index.js"></script>
+    <script type="module" crossorigin src="/Your_Energy/favorites.js"></script>
     <link rel="modulepreload" crossorigin href="/Your_Energy/assets/vendor-CaULtfQf.js">
     <link rel="modulepreload" crossorigin href="/Your_Energy/assets/header-jQzTwcZ6.js">
-    <link rel="stylesheet" crossorigin href="/Your_Energy/assets/vendor-CKZoNpAO.css">
     <link rel="stylesheet" crossorigin href="/Your_Energy/assets/header-BJ9gFBG1.css">
-    <link rel="stylesheet" crossorigin href="/Your_Energy/assets/index-B6VLeeOu.css">
+    <link rel="stylesheet" crossorigin href="/Your_Energy/assets/vendor-CKZoNpAO.css">
+    <link rel="stylesheet" crossorigin href="/Your_Energy/assets/favorites-BGgwAOn6.css">
   </head>
+
   <body>
     <header class="header">
   <div class="container header-container">
@@ -114,95 +125,29 @@
 </div>
 
     <main>
-      <!-- HERO -->
-      <section class="hero section">
-        <div class="container hero-container">
-          <div class="hero-content">
-            <h1 class="hero-title">
-              Get Body in shape, Stay healthy
-            </h1>
+      <section class="favorites section">
+        <div class="container">
+          <h1 class="favorites-title">Favorites</h1>
 
-            <p class="hero-text">
-              Transform your physique and embrace a healthier lifestyle.
+          <section class="quote favorites-quote">
+            <h2 class="favorites-quote-title">Quote of the day</h2>
+            <p class="favorites-quote-text" data-quote-text>Loading...</p>
+            <p class="favorites-quote-author" data-quote-author></p>
+          </section>
+
+          <ul data-favorites-list></ul>
+
+          <div
+            class="favorites-empty is-hidden"
+            data-empty-favorites
+          >
+            <p>
+              It appears that you haven't added any
+              exercises to your favorites yet.
             </p>
-
-            <ul class="hero-tags">
-              <li class="hero-tag">#Sport</li>
-              <li class="hero-tag">#Healthy</li>
-              <li class="hero-tag">#Workout</li>
-              <li class="hero-tag">#Diet</li>
-            </ul>
-          </div>
-
-          <div class="hero-image-wrapper">
-            <img
-              class="hero-image"
-              src="./img/hero-mobile.jpg"
-              alt="People doing exercise"
-            />
           </div>
         </div>
       </section>
-
-      <!-- EXERCISES -->
-      <section class="exercises">
-        <div class="container">
-          <div class="exercises-top">
-            <h2 class="exercises-title">
-              Exercises
-              <span class="selected-category" data-selected-category></span>
-            </h2>
-
-            <form
-              class="search-form is-hidden"
-              data-search-form
-            >
-              <input
-                type="text"
-                name="search"
-                placeholder="Search"
-              />
-              <button type="submit">Search</button>
-            </form>
-          </div>
-
-          <div class="filters" data-filters>
-            <button
-              type="button"
-              data-filter="Muscles"
-              class="is-active"
-            >
-              Muscles
-            </button>
-
-            <button
-              type="button"
-              data-filter="Body parts"
-            >
-              Body parts
-            </button>
-            <button
-              type="button"
-              data-filter="Equipment"
-            >
-              Equipment
-            </button>
-          </div>
-          <ul data-categories-list></ul>
-          <ul data-exercises-list></ul>
-          <div data-pagination></div>
-        </div>
-      </section>
-
-      <!-- QUOTE -->
-      <section class="quote">
-        <div class="container">
-          <h2>Quote of the day</h2>
-          <p data-quote-text>Loading...</p>
-          <p data-quote-author></p>
-        </div>
-      </section>
-      
     </main>
 
     <footer class="footer">
@@ -233,13 +178,13 @@
 
 
     <button
-      class="scroll-up-btn"
       type="button"
       data-scroll-up
       aria-label="Scroll to top"
     >
       ↑
     </button>
+
     <div data-loader class="loader is-hidden"></div>
     <div data-modal-root></div>
 
