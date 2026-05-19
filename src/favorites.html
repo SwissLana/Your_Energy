@@ -37,11 +37,7 @@
         <div class="container">
           <h1 class="favorites-title">Favorites</h1>
 
-          <section class="quote favorites-quote">
-            <h2 class="favorites-quote-title">Quote of the day</h2>
-            <p class="favorites-quote-text" data-quote-text>Loading...</p>
-            <p class="favorites-quote-author" data-quote-author></p>
-          </section>
+          <div data-quote-card-root></div>
 
           <ul data-favorites-list></ul>
 
@@ -70,6 +66,8 @@
 
     <div data-loader class="loader is-hidden"></div>
     <div data-modal-root></div>
+
+    <load src="./template/quote.html" />
 
     <script type="module" src="./favorites.js"></script>
   </body>
