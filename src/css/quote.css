@@ -56,6 +56,17 @@
   height: auto;
 }
 
+.quote-image-wrapper {
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.quote-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .daily-card {
   border-radius: 20px;
   padding: 20px;
@@ -89,6 +100,18 @@
     align-items: flex-start;
   }
 
+@media screen and (min-width: 768px) {
+  .quote-image {
+    height: 110px;
+    object-fit: cover;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .quote-image {
+    height: 140px;
+  }
+}
   .exercises-sidebar {
     width: 240px;
     flex-sh/* Exercises layout */
