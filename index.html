@@ -13,8 +13,8 @@
     />
     <script type="module" crossorigin src="/Your_Energy/index.js"></script>
     <link rel="modulepreload" crossorigin href="/Your_Energy/assets/vendor-CaULtfQf.js">
-    <link rel="modulepreload" crossorigin href="/Your_Energy/assets/header-jQzTwcZ6.js">
-    <link rel="stylesheet" crossorigin href="/Your_Energy/assets/header-BJ9gFBG1.css">
+    <link rel="modulepreload" crossorigin href="/Your_Energy/assets/header-CveSMsZM.js">
+    <link rel="stylesheet" crossorigin href="/Your_Energy/assets/header-DZLKbtdV.css">
     <link rel="stylesheet" crossorigin href="/Your_Energy/assets/vendor-CKZoNpAO.css">
     <link rel="stylesheet" crossorigin href="/Your_Energy/assets/index-B6VLeeOu.css">
   </head>
@@ -159,33 +159,54 @@
       </form>
     </div>
 
-    <div class="filters" data-filters>
-      <button type="button" data-filter="Muscles" class="is-active">
-        Muscles
-      </button>
+    <div class="exercises-content">
+      <aside class="exercises-sidebar">
+        <div class="quote-wrapper">
+          <div class="quote-card">
+            <div class="quote-header">
+              <h3 class="quote-title">Quote of the day</h3>
+            </div>
 
-      <button type="button" data-filter="Body parts">
-        Body parts
-      </button>
-      <button type="button" data-filter="Equipment">
-        Equipment
-      </button>
+            <p class="quote-text" data-quote-text>Loading quote...</p>
+            <p class="quote-author" data-quote-author></p>
+          </div>
+
+          <div class="daily-card">
+            <p class="daily-time">110 min</p>
+            <h3 class="daily-title">Daily norm of sports</h3>
+            <p class="daily-text">
+              The World Health Organization recommends at least 150 minutes of
+              moderate-intensity physical activity throughout the week for adults.
+              Besides that, it has been proven that physical activity improves mental
+              health, mood, and overall quality of life.
+            </p>
+          </div>
+        </div>
+      </aside>
+
+      <div class="exercises-main">
+        <div class="filters" data-filters>
+          <button type="button" data-filter="Muscles" class="is-active">
+            Muscles
+          </button>
+
+          <button type="button" data-filter="Body parts">
+            Body parts
+          </button>
+
+          <button type="button" data-filter="Equipment">
+            Equipment
+          </button>
+        </div>
+
+        <ul data-categories-list></ul>
+        <ul data-exercises-list></ul>
+        <div data-pagination></div>
+      </div>
     </div>
-    <ul data-categories-list></ul>
-    <ul data-exercises-list></ul>
-    <div data-pagination></div>
   </div>
 </section>
 
-      <!-- QUOTE -->
-      <section class="quote">
-        <div class="container">
-          <h2>Quote of the day</h2>
-          <p data-quote-text>Loading...</p>
-          <p data-quote-author></p>
-        </div>
-      </section>
-      
     </main>
 
     <footer class="footer">
