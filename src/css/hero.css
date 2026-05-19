@@ -49,13 +49,24 @@
 }
 
 .hero-image-wrapper {
+  width: 100%;
+  height: 460px;
   overflow: hidden;
   border-radius: 30px;
 }
 
-.hero-image {
+.hero-image-wrapper picture {
+  display: block;
   width: 100%;
+  height: 100%;
+}
+
+.hero-image {
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 @media screen and (min-width: 768px) {
@@ -78,22 +89,28 @@
   .hero-tag {
     font-size: 14px;
   }
+
+  .hero-image-wrapper {
+    border-radius: 60px;
+    height: 550px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
   .hero-container {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 32px;
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .hero-content {
-    flex: 1;
+    max-width: 600px;
   }
 
   .hero-image-wrapper {
-    flex-shrink: 0;
-    width: 540px;
+    height: 350px;
+  }
+
+  .hero-image {
+    object-position: center;
   }
 }
