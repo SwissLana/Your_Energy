@@ -1,9 +1,10 @@
 :root {
-  --color-primary: #242424;
+  --color-primary: rgb(36, 36, 36);
   --color-primary-light: rgba(36, 36, 36, 0.6);
   --color-primary-extra-light: rgba(36, 36, 36, 0.4);
-  --color-white: #ffffff;
-  --color-background: #f4f4f4;
+  --color-white: rgb(255, 255, 255);
+  --color-semitransparent-white: rgba(244, 244, 244, 0.2);
+  --color-background: rgb(244, 244, 244);
   --color-border: rgba(36, 36, 36, 0.2);
   --font-main: 'DM Sans', sans-serif;
   --transition: 250ms ease;

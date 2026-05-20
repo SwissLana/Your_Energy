@@ -8,25 +8,25 @@ export function saveFavorites(data) {
   localStorage.setItem(FAVORITES_KEY, JSON.stringify(data));
 }
 
-export function addFavorite(exercise) {
+export function addFavorite(idToAdd) {
   const favorites = getFavorites();
 
-  if (favorites.some(item => item._id === exercise._id)) {
+  if (favorites.some(id => id === idToAdd)) {
     return;
   }
 
-  favorites.push(exercise);
+  favorites.push(idToAdd);
   saveFavorites(favorites);
 }
 
-export function removeFavorite(id) {
-  const favorites = getFavorites().filter(item => item._id !== id);
+export function removeFavorite(idToRemove) {
+  const favorites = getFavorites().filter(id => id !== idToRemove);
 
   saveFavorites(favorites);
 }
 
-export function isFavorite(id) {
-  return getFavorites().some(item => item._id === id);
+export function isFavorite(idToCheck) {
+  return getFavorites().some(id => id === idToCheck);
 }
 
 export function saveQuote(quote) {
