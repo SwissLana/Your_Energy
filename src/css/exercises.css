@@ -228,11 +228,11 @@
 
 /* Колір очищеної стрілки */
 .arrow-icon {
-  stroke: var(--color-primary);   
+  stroke: var(--color-primary);
   fill: none;
-  stroke-width: 2.6px;   
-  stroke-linecap: round;  
-  stroke-linejoin: round;   
+  stroke-width: 2.6px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 /* Контейнер для іконки бігу та назви */
@@ -255,18 +255,18 @@
   align-items: center;
   width: 35px;
   height: 35px;
-  background-color: #242424;   
-  border-radius: 50%;    
+  background-color: #242424;
+  border-radius: 50%;
 }
 
 /* Колір очищеної іконки бігуна */
 .run-icon {
-  color: #ffffff; 
+  color: #ffffff;
 }
 
 /* Назва вправи */
 .exercise-card-title {
-  font-weight: 400;   
+  font-weight: 400;
   font-size: 24px;
   line-height: 1.17;
   color: var(--color-primary);
@@ -274,7 +274,7 @@
   /* Захист від занадто довгих назв: ховає в трикрапку */
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; 
+  text-overflow: ellipsis;
   /* КРИТИЧНО: дозволяємо заголовку стискатися всередині флекс-контейнера */
   flex-shrink: 1;
 }
@@ -287,54 +287,110 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  margin-top: auto; 
-  white-space: nowrap; 
+  margin-top: auto;
+  white-space: nowrap;
   /* НОВЕ: Задаємо базовий розмір шрифту та висоту рядка */
-    font-size: 12px;
-    line-height: 1.5;
+  font-size: 12px;
+  line-height: 1.5;
 }
 
 /* Додатковий захист для елементів списку */
 .info-item {
-  white-space: nowrap; 
+  white-space: nowrap;
   font-weight: 400;
   font-size: 12px;
   line-height: 150%;
   color: rgba(36, 36, 36, 0.4);
-    
 }
 
 /* Динамічні значення (312 / 3 min, Waist, Abs) */
 .exercise-card-info .info-value {
-  color: var(--color-primary);  
+  color: var(--color-primary);
   font-weight: 400;
   margin-left: 4px;
 }
-
 
 /* PAGINATION */
 
 [data-pagination] {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 4px;
   margin-top: 32px;
 }
 
-.pagination-btn {
-  width: 36px;
-  height: 36px;
+.pagination-btn--nav + .pagination-btn:not(.pagination-btn--nav) {
+  margin-left: 16px;
+}
 
-  border: 1px solid var(--color-border);
-  border-radius: 50%;
+.pagination-btn:not(.pagination-btn--nav) + .pagination-btn--nav,
+.pagination-ellipsis + .pagination-btn--nav {
+  margin-left: 16px;
+}
+
+.pagination-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 8px;
+
+  border: 1px solid transparent;
+  border-radius: 100px;
 
   background: transparent;
+  cursor: pointer;
+
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+
+  transition:
+    background-color var(--transition),
+    color var(--transition),
+    border-color var(--transition);
+}
+
+.pagination-btn:not(.is-active):not(.pagination-btn--nav) {
+  color: var(--color-primary-light);
 }
 
 .pagination-btn.is-active {
-  background-color: var(--color-primary);
-  color: var(--color-white);
+  border-color: var(--color-primary);
+}
+
+.pagination-btn--nav {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.pagination-btn--nav:disabled {
+  border-color: var(--color-border);
+  color: var(--color-primary-light);
+  cursor: not-allowed;
+}
+
+.pagination-btn--nav:hover:not(:disabled) .pagination-icon {
+  transform: scale(1.2);
+}
+
+.pagination-icon {
+  width: 20px;
+  height: 20px;
+  transition: transform var(--transition);
+}
+
+.pagination-ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: var(--color-primary-light);
 }
 
 /* TABLET */
