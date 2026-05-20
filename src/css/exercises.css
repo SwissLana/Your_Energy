@@ -365,15 +365,13 @@
 
 .pagination-btn--nav {
   border-color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 .pagination-btn--nav:disabled {
   border-color: var(--color-border);
+  color: var(--color-primary-light);
   cursor: not-allowed;
-}
-
-.pagination-btn--nav:disabled .pagination-icon {
-  fill: var(--color-primary-light);
 }
 
 .pagination-btn--nav:hover:not(:disabled) .pagination-icon {

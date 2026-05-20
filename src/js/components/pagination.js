@@ -15,10 +15,10 @@ export function createPaginationMarkup(totalPages, currentPage) {
   const isLast = currentPage === totalPages;
   const showNav = totalPages > 3;
 
-  const windowStart = Math.max(1, currentPage - 1);
-  const windowEnd = Math.min(currentPage + 1, totalPages);
-  const showEllipsisBefore = windowStart > 1;
-  const showEllipsisAfter = windowEnd < totalPages;
+  const windowStart = Math.min(Math.max(1, currentPage - 1), Math.max(1, totalPages - 2));
+  const windowEnd = Math.max(Math.min(currentPage + 1, totalPages), Math.min(3, totalPages));
+  const showEllipsisBefore = showNav && windowStart > 1;
+  const showEllipsisAfter = showNav && windowEnd < totalPages;
 
   const navBtn = (iconMarkup, page, disabled, ariaLabel) =>
     `<button
