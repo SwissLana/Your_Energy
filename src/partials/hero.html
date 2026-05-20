@@ -1,11 +1,122 @@
 <section class="hero section">
   <div class="container hero-container">
     <div class="hero-content">
-      <h1 class="hero-title">Get Body in shape, Stay healthy</h1>
+      <div class="hero-text-group">
+        <h1 class="hero-title">
+          <svg class="hero-title-icon" aria-hidden="true" focusable="false">
+            <use href="./img/sprite.svg#icon-sun"></use>
+          </svg>
+          Get <em>Body</em> in shape, Stay healthy
+        </h1>
 
-      <p class="hero-text">
-        Transform your physique and embrace a healthier lifestyle.
-      </p>
+        <p class="hero-text">
+          Transform your physique and embrace a healthier lifestyle with our
+          comprehensive fitness and nutrition support.
+        </p>
+      </div>
+
+      <div class="hero-aside">
+        <picture>
+          <source
+            type="image/avif"
+            srcset="
+              ./img/avif/desktop/women-legs-dt.avif    1x,
+              ./img/avif/desktop/women-legs-dt@2x.avif 2x
+            "
+          />
+          <source
+            type="image/webp"
+            srcset="
+              ./img/webp/desktop/women-legs-dt.webp    1x,
+              ./img/webp/desktop/women-legs-dt@2x.webp 2x
+            "
+          />
+          <img
+            class="hero-aside-image"
+            src="./img/jpg/desktop/women-legs-dt.jpg"
+            srcset="./img/jpg/desktop/women-legs-dt@2x.jpg 2x"
+            alt="Woman exercising"
+            width="336"
+            height="200"
+            loading="lazy"
+            fetchpriority="low"
+          />
+        </picture>
+
+        <ul class="hero-tags">
+          <li class="hero-tag">#Sport</li>
+          <li class="hero-tag">#Healthy</li>
+          <li class="hero-tag">#Workout</li>
+          <li class="hero-tag">#Diet</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hero-media">
+      <div class="hero-image-wrapper">
+        <picture>
+          <source
+            media="(min-width: 1440px)"
+            type="image/avif"
+            srcset="
+              ./img/avif/desktop/hero-desktop.avif    1x,
+              ./img/avif/desktop/hero-desktop@2x.avif 2x
+            "
+          />
+
+          <source
+            media="(min-width: 768px)"
+            type="image/avif"
+            srcset="
+              ./img/avif/tablet/hero-tablet.avif    1x,
+              ./img/avif/tablet/hero-tablet@2x.avif 2x
+            "
+          />
+
+          <source
+            type="image/avif"
+            srcset="
+              ./img/avif/mobile/hero-mobile.avif    1x,
+              ./img/avif/mobile/hero-mobile@2x.avif 2x
+            "
+          />
+
+          <source
+            media="(min-width: 1440px)"
+            type="image/webp"
+            srcset="
+              ./img/webp/desktop/hero-desktop.webp    1x,
+              ./img/webp/desktop/hero-desktop@2x.webp 2x
+            "
+          />
+
+          <source
+            media="(min-width: 768px)"
+            type="image/webp"
+            srcset="
+              ./img/webp/tablet/hero-tablet.webp    1x,
+              ./img/webp/tablet/hero-tablet@2x.webp 2x
+            "
+          />
+
+          <source
+            type="image/webp"
+            srcset="
+              ./img/webp/mobile/hero-mobile.webp    1x,
+              ./img/webp/mobile/hero-mobile@2x.webp 2x
+            "
+          />
+
+          <img
+            class="hero-image"
+            src="./img/jpg/mobile/hero-mobile.jpg"
+            srcset="./img/jpg/mobile/hero-mobile@2x.jpg 2x"
+            alt="People doing exercise"
+            width="335"
+            height="460"
+          />
+        </picture>
+      </div>
 
       <ul class="hero-tags">
         <li class="hero-tag">#Sport</li>
@@ -13,71 +124,6 @@
         <li class="hero-tag">#Workout</li>
         <li class="hero-tag">#Diet</li>
       </ul>
-    </div>
-
-    <div class="hero-image-wrapper">
-      <picture>
-        <source
-          media="(min-width: 1440px)"
-          type="image/avif"
-          srcset="
-            ./img/avif/desktop/hero-desktop.avif 1x,
-            ./img/avif/desktop/hero-desktop@2x.avif 2x
-          "
-        />
-
-        <source
-          media="(min-width: 768px)"
-          type="image/avif"
-          srcset="
-            ./img/avif/tablet/hero-tablet.avif 1x,
-            ./img/avif/tablet/hero-tablet@2x.avif 2x
-          "
-        />
-
-        <source
-          type="image/avif"
-          srcset="
-            ./img/avif/mobile/hero-mobile.avif 1x,
-            ./img/avif/mobile/hero-mobile@2x.avif 2x
-          "
-        />
-
-        <source
-          media="(min-width: 1440px)"
-          type="image/webp"
-          srcset="
-            ./img/webp/desktop/hero-desktop.webp 1x,
-            ./img/webp/desktop/hero-desktop@2x.webp 2x
-          "
-        />
-
-        <source
-          media="(min-width: 768px)"
-          type="image/webp"
-          srcset="
-            ./img/webp/tablet/hero-tablet.webp 1x,
-            ./img/webp/tablet/hero-tablet@2x.webp 2x
-          "
-        />
-
-        <source
-          type="image/webp"
-          srcset="
-            ./img/webp/mobile/hero-mobile.webp 1x,
-            ./img/webp/mobile/hero-mobile@2x.webp 2x
-          "
-        />
-
-        <img
-          class="hero-image"
-          src="./img/jpg/mobile/hero-mobile.jpg"
-          srcset="./img/jpg/mobile/hero-mobile@2x.jpg 2x"
-          alt="People doing exercise"
-          width="335"
-          height="460"
-        />
-      </picture>
     </div>
   </div>
 </section>
