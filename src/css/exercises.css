@@ -125,67 +125,192 @@
   font-size: 14px;
 }
 
-/* EXERCISE CARDS */
+/* ======================================================================= */
+/* EXERCISE CARDS                                                          */
+/* ======================================================================= */
 
+/* 1. Сітка для карток (адаптивна: 1 колонка на мобільних, 2 на десктопі) */
 [data-exercises-list] {
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
+  align-items: stretch; /* КРИТИЧНО: змушує всі картки в одному рядку мати абсолютно однакову висоту * */
 }
 
+/* 2. Головний контейнер картки */
 .exercise-card {
-  padding: 20px;
-  border-radius: 20px;
+  padding: 24px;
+  border-radius: 15px;
   background-color: var(--color-white);
-}
 
-.exercise-card-top {
+  /* НОВЕ: робимо картку флекс-боксом у стовпчик */
   display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  flex-direction: column;
 }
 
-.exercise-card-badge {
-  padding: 4px 10px;
-
-  border: 1px solid var(--color-primary);
-  border-radius: 20px;
-
-  font-size: 12px;
-}
-
-.exercise-card-rating {
-  font-size: 14px;
-}
-
-.exercise-start-btn {
-  margin-left: auto;
-
-  border: none;
-  background: transparent;
-
-  font-weight: 500;
-}
-
-.exercise-card-title {
-  margin-bottom: 16px;
-  font-size: 22px;
-  font-weight: 700;
-}
-
+/* Штовхаємо нижні характеристики до кінця картки */
 .exercise-card-info {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-
-  font-size: 13px;
-  color: var(--color-primary-light);
+  column-gap: 16px;
+  row-gap: 4px;
+  margin-top: auto;
+  /* КРИТИЧНО: автоматично притискає характеристики до нижнього краю картки */
 }
 
-.exercise-card-info span {
+/* 3. Верхня панель (Бейдж+Рейтинг ліворуч, Кнопка праворуч) */
+.exercise-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Розштовхує елементи по краях */
+  margin-bottom: 33px;
+  /* Відступ до назви вправи */
+}
+
+/* Новий контейнер для бейджа та рейтингу */
+.exercise-card-badge-rating {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  /* Відступ між WORKOUT та 4.0 */
+}
+
+/* Бейдж WORKOUT */
+.exercise-card-badge {
+  padding: 5px 14px;
+  border: 1px solid var(--color-primary);
+  /* Якщо на макеті чорний — використовуйте колір тексту */
+  border-radius: 15px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
+  text-transform: uppercase;
+}
+
+/* Блок рейтингу (число + зірочка) */
+.exercise-card-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  /* Відступ між цифрою та зіркою */
+  font-size: 14px;
+  line-height: 1.29;
+}
+
+/* Колір очищеної SVG-зірочки */
+.star-icon {
+  color: #eea10c;
+  /* Фірмовий жовтий колір зірки з макету */
+}
+
+/* Кнопка "Start" зі стрілкою */
+.exercise-start-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  /* Відступ між словом Start та стрілкою */
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29;
   color: var(--color-primary);
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
+
+.exercise-start-btn:hover {
+  transform: scale(1.05);
+  /* Легкий інтерактивний ефект при наведенні */
+}
+
+/* Колір очищеної стрілки */
+.arrow-icon {
+  stroke: var(--color-primary);   
+  fill: none;
+  stroke-width: 2.6px;   
+  stroke-linecap: round;  
+  stroke-linejoin: round;   
+}
+
+/* Контейнер для іконки бігу та назви */
+.exercise-card-title-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  /* Відступ між круглою іконкою та текстом Air bike */
+  margin-bottom: 16px;
+  /* КРИТИЧНО: обмежуємо максимальну ширину рядка назви, */
+  /* щоб довгий текст не розпирав картку вшир */
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Обгортка іконки бігуна (чорне коло) */
+.run-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  background-color: #242424;   
+  border-radius: 50%;    
+}
+
+/* Колір очищеної іконки бігуна */
+.run-icon {
+  color: #ffffff; 
+}
+
+/* Назва вправи */
+.exercise-card-title {
+  font-weight: 400;   
+  font-size: 24px;
+  line-height: 1.17;
+  color: var(--color-primary);
+
+  /* Захист від занадто довгих назв: ховає в трикрапку */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  /* КРИТИЧНО: дозволяємо заголовку стискатися всередині флекс-контейнера */
+  flex-shrink: 1;
+}
+
+/* Нижня панель: Характеристики (калорії, зона тіла...) */
+.exercise-card-info {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: auto; 
+  white-space: nowrap; 
+  /* НОВЕ: Задаємо базовий розмір шрифту та висоту рядка */
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* Додатковий захист для елементів списку */
+.info-item {
+  white-space: nowrap; 
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+  color: rgba(36, 36, 36, 0.4);
+    
+}
+
+/* Динамічні значення (312 / 3 min, Waist, Abs) */
+.exercise-card-info .info-value {
+  color: var(--color-primary);  
+  font-weight: 400;
+  margin-left: 4px;
+}
+
 
 /* PAGINATION */
 
@@ -238,6 +363,6 @@
   }
 
   [data-exercises-list] {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }

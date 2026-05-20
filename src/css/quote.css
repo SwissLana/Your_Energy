@@ -204,8 +204,10 @@
 
   .exercises-sidebar {
     width: 352px;
+    flex-shrink: 0;
   }
-}rink: 0;
+} 
+
   }
 
   .exercises-main {
