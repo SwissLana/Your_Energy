@@ -47,8 +47,6 @@ refs.categoriesList.addEventListener('click', onCategoryClick);
 refs.pagination.addEventListener('click', onPaginationClick);
 refs.searchForm.addEventListener('submit', onSearchSubmit);
 
-updateSelectedPath();
-
 loadCategories();
 
 async function loadCategories() {
@@ -57,7 +55,7 @@ async function loadCategories() {
 
     state.mode = 'categories';
     refs.searchForm.classList.add('is-hidden');
-    updateSelectedPath();
+    refs.selectedCategory.textContent = '';
     refs.exercisesList.innerHTML = '';
 
     const data = await fetchFilters(state.filter, state.page, FILTERS_PER_PAGE);
@@ -108,7 +106,7 @@ async function loadExercises() {
 
     const data = await fetchExercises(params);
 
-    updateSelectedPath();
+    refs.selectedCategory.textContent = `/ ${state.category}`;
 
     if (!data.results.length) {
       refs.exercisesList.innerHTML = '<li>Exercises not found.</li>';
@@ -180,8 +178,4 @@ function onSearchSubmit(event) {
   state.page = 1;
 
   loadExercises();
-}
-
-function updateSelectedPath() {
-  refs.selectedCategory.textContent = `/ ${state.filter}`;
 }
