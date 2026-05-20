@@ -1,5 +1,5 @@
 import iziToast from 'izitoast';
-
+import sprite from "../../img/sprite.svg"
 import { fetchExerciseById } from '../api/exercises-api';
 import { addFavorite, removeFavorite, isFavorite } from '../utils/storage';
 
@@ -21,7 +21,8 @@ async function onExerciseStartClick(event) {
   try {
     currentExercise = await fetchExerciseById(button.dataset.id);
     openExerciseModal(currentExercise);
-  } catch {
+  } catch (error) {
+    console.error("Failed to load exercise:", error);
     iziToast.error({
       message: 'Failed to load exercise details.',
       position: 'topRight',
@@ -63,7 +64,9 @@ function createExerciseModalMarkup(exercise) {
           data-modal-close
           aria-label="Close modal"
         >
-          ×
+          <svg class="modal-close-icon" aria-hidden="true">
+            <use href="${sprite}#icon-x"></use>
+          </svg>
         </button>
         <div class="modal-content">
           <div class="exercise-modal-media">
@@ -77,7 +80,7 @@ function createExerciseModalMarkup(exercise) {
             <div class="exercise-heading">
               <h2 class="exercise-modal-title">${exercise.name}</h2>
               <div class="exercise-rating-container">
-                <span class="rating-value">${exercise.rating ? Math.round(exercise.rating).toFixed(1) : '0.0'}</span>
+                <span class="rating-value">${exercise.rating ? Number(exercise.rating).toFixed(1) : '0.0'}</span>
                 <div class="rating-stars">
                   ${starsMarkup}
                 </div>
@@ -120,7 +123,7 @@ function createExerciseModalMarkup(exercise) {
             >
               <span>${btnText}</span>
               <svg class="modal-btn-icon" width="18" height="18" aria-hidden="true">
-                <use href="#${btnIconId}"></use>
+                <use href="${sprite}#${btnIconId}"></use>
               </svg>
             </button>           
           </div>          
@@ -133,18 +136,40 @@ function createExerciseModalMarkup(exercise) {
 function createRatingStarsMarkup(rating) {
   const maxStars = 5;
   // round up rating to whole number
-  const filledStarsCount = Math.round(rating || 0);
+  const currentRating = Number(rating || 0);
 
   let starsMarkup = '';
 
+  // calculate coloring percentage for the star
+  const fillPercentage = Math.round((currentRating % 1) * 100)
+
+  // create dynamic gradient
+  starsMarkup += `
+    <svg width="0" height="0" style="position:absolute;">
+      <defs>
+        <linearGradient id="partial-star-gradient">
+          <stop offset="${fillPercentage}%" stop-color="#eea111" /> <stop offset="${fillPercentage}%" stop-color="#e0e0e0" /> </linearGradient>
+      </defs>
+    </svg>
+  `;
+
   for (let i = 1; i <= maxStars; i++) {
-    // color star if rating equal or bigger than current index
-    const isFilled = i <= filledStarsCount;
-    const starClass = isFilled ? 'star-icon filled' : 'star-icon empty';
+    let starFill;
+
+    if (i <= Math.floor(currentRating)) {
+      // if star less or equal whole part of rating, it is colored orange
+      starFill = 'rgb(238, 161, 12)'; 
+    } else if (i === Math.ceil(currentRating) && currentRating % 1 !== 0) {
+      // if this is next star and there is a part, apply gradient based on id
+      starFill = 'url(#partial-star-gradient)';
+    } else {
+      // all other stars are gray
+      starFill = 'rgba(244, 244, 244, 0.2)';
+    }
 
     starsMarkup += `
-      <svg class="${starClass}" width="18" height="18">
-        <use href="#icon-star"></use>
+      <svg width="18" height="18" aria-hidden="true" style="fill: ${starFill};">
+        <use href="${sprite}#icon-add-rating-star"></use>
       </svg>
     `;
   }
@@ -172,12 +197,12 @@ function onClickToggleFavorite() {
     removeFavorite(currentExercise._id);
     favorite = false;
     textSpan.textContent = 'Add to favorites';
-    svgUse.setAttribute('href', '#icon-heart');
+    svgUse.setAttribute('href', `${sprite}#icon-heart`);
   } else {
     addFavorite(currentExercise._id);
     favorite = true;
     textSpan.textContent = 'Remove from favorites';
-    svgUse.setAttribute('href', '#icon-trash');
+    svgUse.setAttribute('href', `${sprite}#icon-trash`);
   }
   
 }
