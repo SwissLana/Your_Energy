@@ -41,15 +41,10 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
-}
 
-.favorite-remove-btn {
-  margin-top: 20px;
-
-  border: none;
-  background: transparent;
-
-  font-size: 22px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .favorites-empty {
@@ -58,6 +53,197 @@
   text-align: center;
   color: var(--color-primary-light);
   line-height: 1.5;
+}
+
+.favorite-card {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border-radius: 15px;
+  background-color: var(--color-white);
+  min-width: 0;
+}
+
+.favorite-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 25px;
+}
+
+.favorite-card-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.favorite-card-badge {
+  padding: 5px 14px;
+  border: 1px solid var(--color-primary);
+  border-radius: 15px;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.17;
+  text-transform: uppercase;
+}
+
+/* Кошик-кнопка видалення з вибраного */
+.favorite-card-remove-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+  padding: 0;
+
+  border: none;
+  background: transparent;
+  color: var(--color-primary);
+  cursor: pointer;
+
+  transition: transform var(--transition);
+}
+
+.favorite-card-remove-btn:hover,
+.favorite-card-remove-btn:focus-visible {
+  transform: scale(1.1);
+}
+
+.favorite-card-trash-icon {
+  stroke: currentColor;
+  fill: none;
+}
+
+/* Кнопка Start */
+.favorite-card-start-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29;
+  color: var(--color-primary);
+
+  transition: transform 0.2s ease;
+}
+
+.favorite-card-start-btn:hover {
+  transform: scale(1.05);
+}
+
+.favorite-card-arrow-icon {
+  stroke: var(--color-primary);
+  fill: none;
+  stroke-width: 2.6px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Заголовок: іконка-кружок з бігуном + назва вправи */
+.favorite-card-heading {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  width: 100%;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.favorite-card-icon-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-shrink: 0;
+
+  width: 24px;
+  height: 24px;
+
+  background-color: #242424;
+  border-radius: 50%;
+}
+
+.favorite-card-icon {
+  color: #ffffff;
+}
+
+.favorite-card-title {
+  flex-shrink: 1;
+
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.17;
+  color: var(--color-primary);
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Нижня панель характеристик */
+.favorite-card-info {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  column-gap: 10px;
+
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: auto;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.favorite-info-item {
+  display: flex;
+  align-items: baseline;
+
+  min-width: 0;
+  height: 18px;
+
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+  cursor: default;
+}
+
+.favorite-info-label {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  color: rgba(36, 36, 36, 0.4);
+}
+
+.favorite-info-value {
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  font-weight: 400;
+  color: var(--color-primary);
+}
+
+.favorite-info-item:nth-child(1) .favorite-info-value {
+  flex: 0 1 40px;
+}
+
+.favorite-info-item:nth-child(2) .favorite-info-value {
+  flex: 0 1 31px;
+}
+.favorite-info-item:nth-child(3) .favorite-info-value {
+  flex: 0 1 19px;
 }
 
 @media screen and (min-width: 768px) {
