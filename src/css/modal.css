@@ -19,31 +19,34 @@
   max-width: 335px;
   max-height: 90vh;
 
-  overflow-y: auto;
-
-  padding: 40px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
 
   border-radius: 20px;
-  background-color: var(--color-white);
+  color: var(--color-background);
+  background-color: var(--color-primary);
+}
+
+.modal-content{
+  padding: 40px 20px 20px;
+  overflow-y: auto;
+  height: 100%;
 }
 
 .modal-close-btn {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 14px;
+  right: 14px;
 
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
 
   border: none;
   background: transparent;
-
-  font-size: 28px;
-  line-height: 1;
 }
 
 .exercise-modal-media {
-  margin-bottom: 20px;
   overflow: hidden;
   border-radius: 12px;
 }
@@ -53,65 +56,186 @@
   object-fit: cover;
 }
 
-.exercise-modal-title {
-  margin-bottom: 20px;
+.exercise-description {
+  margin-top: 20px;
+}
 
-  font-size: 24px;
-  font-weight: 700;
+.exercise-heading {
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--color-semitransparent-white);
+}
+
+.exercise-modal-title {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.exercise-modal-title::first-letter {
+  text-transform: uppercase;
+}
+
+.rating-value{
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+.exercise-rating-container{
+  display: flex;
+  gap: 4px;
+}
+
+.star-icon.filled{
+  fill: rgb(238, 161, 12);
+}
+
+.star-icon.empty{
+  fill: var(--color-semitransparent-white);
 }
 
 .exercise-modal-info {
-  display: grid;
-  gap: 10px;
-  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--color-semitransparent-white);
+}
 
+.info-label{
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-semitransparent-white);
+}
+
+.info-value{
+  display: inline-block;
   font-size: 14px;
-  color: var(--color-primary-light);
+  font-weight: 500;
+  line-height: 1.3;
 }
 
-.exercise-modal-info span {
-  color: var(--color-primary);
+.info-value::first-letter{
+  text-transform: uppercase;
 }
+
 
 .exercise-modal-description {
-  margin-bottom: 24px;
-  line-height: 1.5;
-  color: var(--color-primary-light);
+  margin-top: 20px;
+  font-size: 14px;
+  line-height: 1.3;
+  color: rgba(244, 244, 244, 0.6);
 }
 
 .favorite-modal-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
   width: 100%;
-  min-height: 48px;
+  height: 42px;
+
+  font-size: 14px;
+  line-height: 1.3;
 
   border: none;
   border-radius: 30px;
+  margin-top: 40px;
+  margin-bottom: 20px;
 
-  background-color: var(--color-primary);
-  color: var(--color-white);
-
-  font-weight: 500;
-
-  transition: opacity var(--transition);
+  background-color: var(--color-background);
+  color: var(--color-primary);
+  transition: color var(--transition), background-color var(--transition)
 }
 
-.favorite-modal-btn:hover,
-.favorite-modal-btn:focus {
-  opacity: 0.9;
+.favorite-modal-btn:focus-visible{
+  color: var(--color-background);
+  background-color: transparent;
+  border-color: var(--color-background);
 }
+
+.favorite-modal-btn:focus-visible>.modal-btn-icon {
+  stroke: var(--color-background);
+}
+
+.modal-btn-icon{
+  stroke: var(--color-primary);
+  fill: transparent;
+}
+
 
 @media screen and (min-width: 768px) {
   .exercise-modal {
-    max-width: 700px;
-    padding: 48px 32px 32px;
+    max-width: 704px;
+  }
+
+  .modal-content {
+    display: flex;
+    gap: 32px;
+    padding: 32px;
+  }
+
+  .exercise-description {
+    margin-top: 0;
+  }
+
+  .modal-close-btn {
+    top: 16px;
+    right: 16px;
+
+    width: 28px;
+    height: 28px;
+  }
+
+  .exercise-modal-media {
+    width: 270px;
+    height: 260px;
+    flex-shrink: 0;
+  }
+
+  .exercise-heading {
+    padding-bottom: 16px;
   }
 
   .exercise-modal-title {
-    font-size: 32px;
+    margin-bottom: 8px;
+    font-size: 24px;
+    line-height: 1.33;
+  }
+
+  .exercise-modal-info {
+    gap: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--color-semitransparent-white);
+  }
+
+  .exercise-modal-description {
+    margin-top: 16px;
+  }
+
+  .favorite-modal-btn{
+    /* width: 194px; */
+    height: 48px;
+    margin-bottom: 0;
+    margin-top: 64px;
+
+    font-size: 16px;
+    line-height: 1.5;
   }
 }
 
 @media screen and (min-width: 1440px) {
-  .exercise-modal {
-    max-width: 900px;
+  .favorite-modal-btn:hover {
+    color: var(--color-background);
+    background-color: transparent;
+    border: 1px solid var(--color-background);
+  }
+
+  .favorite-modal-btn:hover>.modal-btn-icon {
+    stroke: var(--color-background);
   }
 }
