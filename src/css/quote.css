@@ -363,13 +363,6 @@
     gap: 18px;
   }
 
-  .quote-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-
   .quote-title {
     font-size: 24px;
     line-height: 1.33;
