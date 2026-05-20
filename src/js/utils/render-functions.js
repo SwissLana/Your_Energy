@@ -35,7 +35,7 @@ export function createExerciseCardMarkup(exercise) {
           <span class="exercise-card-rating">
             <span class="rating-value">${formattedRating}</span>
             <svg class="star-icon" width="14" height="14">
-              <use href="./img/icons.svg#icon-star"></use>
+              <use href="./img/sprite.svg#icon-card-rating-star"></use>
             </svg>
           </span>
         </div>
@@ -49,7 +49,7 @@ export function createExerciseCardMarkup(exercise) {
         >
           Start
           <svg class="arrow-icon" width="16" height="16">
-            <use href="./img/icons.svg#icon-arrow-right"></use>
+            <use href="./img/sprite.svg#icon-arrow-right"></use>
           </svg>
         </button>
       </div>
@@ -57,7 +57,7 @@ export function createExerciseCardMarkup(exercise) {
       <div class="exercise-card-title-container">
         <div class="run-icon-wrapper">
           <svg class="run-icon" width="24" height="24">
-            <use href="./img/icons.svg#icon-run"></use>
+            <use href="./img/sprite.svg#icon-running-figure"></use>
           </svg>
         </div>
         <h3 class="exercise-card-title">${name}</h3>
