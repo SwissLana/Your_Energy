@@ -1,5 +1,5 @@
 import iziToast from 'izitoast';
-import sprite from "../../img/sprite.svg"
+import sprite from '../../img/sprite.svg';
 import { fetchExerciseById } from '../api/exercises-api';
 import { addFavorite, removeFavorite, isFavorite } from '../utils/storage';
 
