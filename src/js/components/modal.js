@@ -49,7 +49,7 @@ function openExerciseModal(exercise) {
 function createExerciseModalMarkup(exercise) {
   favorite = isFavorite(exercise._id);
 
-  const starsMarkup = createRatingStarsMarkup(exercise.rating);
+  const starsMarkup = createRatingStarsMarkup(exercise.rating, exercise._id);
 
   // dynamically change button functionality display
   const btnText = favorite ? 'Remove from favorites' : 'Add to favorites';  
@@ -133,25 +133,29 @@ function createExerciseModalMarkup(exercise) {
   `;
 }
 
-function createRatingStarsMarkup(rating) {
+function createRatingStarsMarkup(rating, exerciseId = 'exercise') {
   const maxStars = 5;
   // round up rating to whole number
   const currentRating = Number(rating || 0);
+  const hasPartialStar = currentRating % 1 !== 0;
+  const gradientId = `partial-star-gradient-${exerciseId}`;
 
   let starsMarkup = '';
 
   // calculate coloring percentage for the star
-  const fillPercentage = Math.round((currentRating % 1) * 100)
+  const fillPercentage = Math.round((currentRating % 1) * 100);
 
-  // create dynamic gradient
-  starsMarkup += `
-    <svg width="0" height="0" style="position:absolute;">
-      <defs>
-        <linearGradient id="partial-star-gradient">
-          <stop offset="${fillPercentage}%" stop-color="#eea111" /> <stop offset="${fillPercentage}%" stop-color="#e0e0e0" /> </linearGradient>
-      </defs>
-    </svg>
-  `;
+  if (hasPartialStar) {
+    // create dynamic gradient
+    starsMarkup += `
+      <svg width="0" height="0" style="position:absolute;">
+        <defs>
+          <linearGradient id="${gradientId}">
+            <stop offset="${fillPercentage}%" stop-color="#eea111" /> <stop offset="${fillPercentage}%" stop-color="#e0e0e0" /> </linearGradient>
+        </defs>
+      </svg>
+    `;
+  }
 
   for (let i = 1; i <= maxStars; i++) {
     let starFill;
@@ -159,9 +163,9 @@ function createRatingStarsMarkup(rating) {
     if (i <= Math.floor(currentRating)) {
       // if star less or equal whole part of rating, it is colored orange
       starFill = 'rgb(238, 161, 12)'; 
-    } else if (i === Math.ceil(currentRating) && currentRating % 1 !== 0) {
+    } else if (i === Math.ceil(currentRating) && hasPartialStar) {
       // if this is next star and there is a part, apply gradient based on id
-      starFill = 'url(#partial-star-gradient)';
+      starFill = `url(#${gradientId})`;
     } else {
       // all other stars are gray
       starFill = 'rgba(244, 244, 244, 0.2)';
