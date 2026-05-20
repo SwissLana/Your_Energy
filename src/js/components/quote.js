@@ -1,7 +1,17 @@
 import { fetchQuote } from '../api/exercises-api';
 import { getSavedQuote, saveQuote } from '../utils/storage';
 
+export function renderQuoteCard(rootSelector) {
+  const root = document.querySelector(rootSelector);
+  const template = document.getElementById('quote-card-template');
+
+  if (!root || !template) return;
+
+  root.appendChild(template.content.cloneNode(true));
+}
+
 export async function initQuote() {
+  renderQuoteCard('[data-quote-card-root]');
   const quoteText = document.querySelector('[data-quote-text]');
   const quoteAuthor = document.querySelector('[data-quote-author]');
 

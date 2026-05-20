@@ -16,6 +16,14 @@
   display: none;
 }
 
+.social-list a {
+  color: var(--color-primary);
+}
+
+.social-list svg {
+  fill: currentColor;
+}
+
 .burger-btn {
   display: flex;
   align-items: center;
