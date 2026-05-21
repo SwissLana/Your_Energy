@@ -54,5 +54,15 @@
         <symbol id="icon-arrow-right" viewBox="0 0 32 32">
             <path stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" stroke-width="2.6" d="M15 2l13 13-13 13M28 15h-26"></path>
         </symbol>
+        <symbol id="burger-menu" viewBox="0 0 32 32">
+            <path d="M28 13.3334H4" stroke="#242424" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M28 8H4" stroke="#242424" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M28 18.6666H4" stroke="#242424" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M28 24H4" stroke="#242424" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
+        <symbol id="close-menu" viewBox="0 0 32 32">
+            <path d="M24 8L8 24" stroke="#F4F4F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M8 8L24 24" stroke="#F4F4F4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
     </defs>
 </svg>

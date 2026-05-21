@@ -1,22 +1,22 @@
 <header class="header">
   <div class="container header-container">
     <a href="./index.html" class="logo">
-      <img src="./img/logo.svg" alt="YOUR ENERGY Logo">
+      <img src="./img/logo.svg" alt="YOUR ENERGY Logo" />
     </a>
 
     <nav class="header-nav">
       <ul class="header-nav-list">
-        <li>
-          <a href="./index.html" class="header-nav-link">Home</a>
+        <li class="header-nav-link">
+          <a href="./index.html">Home</a>
         </li>
-        <li>
-          <a href="./favorites.html" class="header-nav-link">Favorites</a>
+        <li class="header-nav-link">
+          <a href="./favorites.html">Favorites</a>
         </li>
       </ul>
     </nav>
 
     <ul class="social-list">
-      <li>
+      <li class="social-list-link">
         <a
           href="https://www.facebook.com/goITclub/"
           target="_blank"
@@ -29,7 +29,7 @@
         </a>
       </li>
 
-      <li>
+      <li class="social-list-link">
         <a
           href="https://www.instagram.com/goitclub/"
           target="_blank"
@@ -42,7 +42,7 @@
         </a>
       </li>
 
-      <li>
+      <li class="social-list-link">
         <a
           href="https://www.youtube.com/c/GoIT"
           target="_blank"
@@ -62,8 +62,9 @@
       data-menu-open
       aria-label="Open menu"
     >
-      ☰
+      <svg width="32px" height="32px">
+        <use href="./img/sprite.svg#burger-menu"></use>
+      </svg>
     </button>
   </div>
 </header>
-
