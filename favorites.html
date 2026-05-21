@@ -20,10 +20,10 @@
     />
     <script type="module" crossorigin src="/Your_Energy/favorites.js"></script>
     <link rel="modulepreload" crossorigin href="/Your_Energy/assets/vendor-CaULtfQf.js">
-    <link rel="modulepreload" crossorigin href="/Your_Energy/assets/header-DmE8WS6g.js">
-    <link rel="stylesheet" crossorigin href="/Your_Energy/assets/header-BnHw-j7F.css">
+    <link rel="modulepreload" crossorigin href="/Your_Energy/assets/header-BTHTorcc.js">
     <link rel="stylesheet" crossorigin href="/Your_Energy/assets/vendor-CKZoNpAO.css">
-    <link rel="stylesheet" crossorigin href="/Your_Energy/assets/favorites-BGgwAOn6.css">
+    <link rel="stylesheet" crossorigin href="/Your_Energy/assets/header-DbipqMuP.css">
+    <link rel="stylesheet" crossorigin href="/Your_Energy/assets/favorites-CEhJxERt.css">
   </head>
 
   <body>
@@ -163,70 +163,27 @@
         <div class="container">
           <h1 class="favorites-title">Favorites</h1>
 
-          <div data-quote-card-root></div>
+          <div class="favorites-layout">
+            <div data-quote-card-root></div>
 
-          <ul data-favorites-list></ul>
+            <ul data-favorites-list></ul>
 
-          <div class="favorites-empty is-hidden" data-empty-favorites>
-            <p>
-              It appears that you haven't added any exercises to your favorites
-              yet.
-            </p>
+            <div
+              class="favorites-empty is-hidden"
+              data-empty-favorites
+            >
+              <p>
+                It appears that you haven't added any
+                exercises to your favorites yet. To get
+                started, you can add exercises that you
+                like to your favorites for easier access
+                in the future.
+              </p>
+            </div>
           </div>
         </div>
       </section>
     </main>
-
-    <footer class="footer">
-  <div class="container footer-container">
-    <a href="./index.html" class="footer-logo">YOUR ENERGY</a>
-
-    <ul class="footer-social-list">
-      <li>
-        <a href="https://www.facebook.com/goITclub/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-          <svg width="20" height="20">
-            <use href="/Your_Energy/assets/sprite-EbCy_zpL.svg#icon-facebook"></use>
-          </svg>
-        </a>
-      </li>
-      <li>
-        <a href="https://www.instagram.com/goitclub/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <svg width="20" height="20">
-            <use href="/Your_Energy/assets/sprite-EbCy_zpL.svg#icon-instagram"></use>
-          </svg>
-        </a>
-      </li>
-      <li>
-        <a href="https://www.youtube.com/c/GoIT" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-          <svg width="20" height="20">
-            <use href="/Your_Energy/assets/sprite-EbCy_zpL.svg#icon-youtube"></use>
-          </svg>
-        </a>
-      </li>
-    </ul>
-
-    <p class="footer-text">
-      Transforming your body shape with us
-    </p>
-
-    <form class="subscription-form" data-subscription-form>
-      <label>
-        Subscribe and learn about new exercises!
-
-        <input
-          type="email"
-          name="email"
-          required
-          pattern="^\w+(\.\w+)?@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$"
-          placeholder="Email"
-        />
-      </label>
-
-      <button type="submit">Send</button>
-    </form>
-  </div>
-</footer>
-
 
     <button type="button" data-scroll-up aria-label="Scroll to top">↑</button>
 
