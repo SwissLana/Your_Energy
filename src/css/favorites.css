@@ -12,29 +12,23 @@
   letter-spacing: -0.02em;
 }
 
-.favorites-quote {
-  margin-bottom: 32px;
-  padding: 24px;
-  border-radius: 20px;
-
-  background-color: var(--color-primary);
-  color: var(--color-white);
+.favorites-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
 }
 
-.favorites-quote-title {
-  margin-bottom: 16px;
-  font-size: 20px;
-  font-weight: 700;
+ @media screen and (min-width: 768px) {
+  .favorites-content {
+    gap: 64px;
+  }
 }
 
-.favorites-quote-text {
-  margin-bottom: 12px;
-  line-height: 1.5;
-}
-
-.favorites-quote-author {
-  font-size: 14px;
-  opacity: 0.8;
+@media screen and (min-width: 1440px) {
+  .favorites-content {
+    grid-template-columns: 494px 1.1fr;
+    gap: 32px;
+  }
 }
 
 [data-favorites-list] {
@@ -287,26 +281,12 @@
 }
 
 @media screen and (min-width: 1440px) {
-  .favorites-layout {
-    display: grid;
-    grid-template-columns: 494px 826px;
-    column-gap: 32px;
-    align-items: start;
-  }
-
-  [data-quote-card-root] {
-    grid-column: 1;
+  .favorites-right {
+    grid-column: 2;
   }
 
   [data-favorites-list] {
-    grid-column: 2;
-    grid-template-columns: repeat(2, 405px);
-    column-gap: 16px;
-    row-gap: 32px;
-  }
-
-  .favorites-empty {
-    grid-column: 1 / -1;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .favorite-card-badges {
