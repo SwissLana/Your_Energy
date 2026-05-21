@@ -36,7 +36,7 @@ export function createExerciseCardMarkup(exercise, options = {}) {
           data-id="${_id}"
           aria-label="Remove exercise from favorites"
         >
-          <svg class="trash-icon" width="16" height="16">
+          <svg class="trash-icon" width="16" height="16" aria-hidden="true" focusable="false">
             <use href="./img/sprite.svg#icon-trash"></use>
           </svg>
         </button>
@@ -47,7 +47,7 @@ export function createExerciseCardMarkup(exercise, options = {}) {
         return `
         <span class="exercise-card-rating">
           <span class="rating-value">${formattedRating}</span>
-          <svg class="star-icon" width="14" height="14">
+          <svg class="star-icon" width="14" height="14" aria-hidden="true" focusable="false">
             <use href="./img/sprite.svg#icon-card-rating-star"></use>
           </svg>
         </span>
@@ -70,7 +70,7 @@ export function createExerciseCardMarkup(exercise, options = {}) {
           aria-label="Open exercise details"
         >
           Start
-          <svg class="arrow-icon" width="16" height="16">
+          <svg class="arrow-icon" width="16" height="16" aria-hidden="true" focusable="false">
             <use href="./img/sprite.svg#icon-arrow-right"></use>
           </svg>
         </button>
@@ -78,7 +78,7 @@ export function createExerciseCardMarkup(exercise, options = {}) {
 
       <div class="exercise-card-title-container">
         <div class="run-icon-wrapper">
-          <svg class="run-icon" width="24" height="24">
+          <svg class="run-icon" width="24" height="24" aria-hidden="true" focusable="false">
             <use href="./img/sprite.svg#icon-running-figure"></use>
           </svg>
         </div>
