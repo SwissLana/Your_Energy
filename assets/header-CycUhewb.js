@@ -80,7 +80,7 @@ import{a as f,i as q}from"./vendor-CaULtfQf.js";(function(){const t=document.cre
             data-id="${t}"
             aria-label="Remove exercise from favorites"
           >
-            <svg class="favorite-card-trash-icon" width="16" height="16">
+            <svg class="favorite-card-trash-icon" width="16" height="16" aria-hidden="true" focusable="false">
               <use href="./img/sprite.svg#icon-trash"></use>
             </svg>
           </button>
@@ -94,7 +94,7 @@ import{a as f,i as q}from"./vendor-CaULtfQf.js";(function(){const t=document.cre
           aria-label="Open exercise details"
         >
           Start
-          <svg class="favorite-card-arrow-icon" width="16" height="16">
+          <svg class="favorite-card-arrow-icon" width="16" height="16" aria-hidden="true" focusable="false">
             <use href="./img/sprite.svg#icon-arrow-right"></use>
           </svg>
         </button>
@@ -102,7 +102,7 @@ import{a as f,i as q}from"./vendor-CaULtfQf.js";(function(){const t=document.cre
 
       <div class="favorite-card-heading">
         <div class="favorite-card-icon-wrap">
-          <svg class="favorite-card-icon" width="14" height="14">
+          <svg class="favorite-card-icon" width="14" height="14" aria-hidden="true" focusable="false">
             <use href="./img/sprite.svg#icon-running-figure"></use>
           </svg>
         </div>
@@ -207,4 +207,4 @@ import{a as f,i as q}from"./vendor-CaULtfQf.js";(function(){const t=document.cre
         <use href="${p}#icon-add-rating-star"></use>
       </svg>
     `}return i}function x(e){(e.target.matches("[data-modal-backdrop]")||e.target.closest("[data-modal-close]"))&&w()}function S(){if(!n||!u)return;const e=n.querySelector("span"),t=n.querySelector("use");l?(P(u._id),l=!1,e.textContent="Add to favorites",t.setAttribute("href",`${p}#icon-heart`)):(B(u._id),l=!0,e.textContent="Remove from favorites",t.setAttribute("href",`${p}#icon-trash`))}function L(e){e.key==="Escape"&&w()}function w(){c&&(n&&(n.removeEventListener("click",S),n=null),c.innerHTML="",u=null,l=!1,document.body.classList.remove("no-scroll"),document.removeEventListener("keydown",L),c.removeEventListener("click",x))}function Y(e){const t=document.querySelector(e),a=document.getElementById("quote-card-template");!t||!a||t.appendChild(a.content.cloneNode(!0))}async function re(){Y("[data-quote-card-root]");const e=document.querySelector("[data-quote-text]"),t=document.querySelector("[data-quote-author]");if(!e||!t)return;const a=N();if(a){b(a,e,t);return}try{const i=await F();A(i),b(i,e,t)}catch{e.textContent="Quote is not available now.",t.textContent=""}}function b(e,t,a){t.textContent=e.quote,a.textContent=e.author}function oe(){const e=document.querySelector("[data-scroll-up]");e&&(window.addEventListener("scroll",()=>{e.classList.toggle("is-visible",window.scrollY>400)}),e.addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"})}))}function j(){const e=document.querySelectorAll(".header-nav-list .header-nav-link");if(!e.length)return;const t=i=>{const s=i.split("/").pop();return!s||s===""?"index.html":s},a=t(window.location.pathname);e.forEach(i=>{const s=i.querySelector("a");if(!s)return;const r=t(s.pathname);i.classList.toggle("active",r===a)})}function ne(){j();const e=document.querySelector("[data-menu-open]"),t=document.querySelector("[data-menu-close]"),a=document.querySelector("[data-mobile-menu]");!e||!t||!a||(e.addEventListener("click",()=>{a.classList.add("is-open"),document.body.classList.add("no-scroll")}),t.addEventListener("click",()=>{a.classList.remove("is-open"),document.body.classList.remove("no-scroll")}),a.addEventListener("click",i=>{i.target.matches("a")&&(a.classList.remove("is-open"),document.body.classList.remove("no-scroll"))}))}export{J as E,H as F,re as a,oe as b,ie as c,ae as d,Z as e,V as f,G as g,se as h,ne as i,W as j,ee as k,m as l,C as m,te as n,P as r,X as s};
-//# sourceMappingURL=header-CtoLcyMC.js.map
+//# sourceMappingURL=header-CycUhewb.js.map
