@@ -37,18 +37,21 @@
         <div class="container">
           <h1 class="favorites-title">Favorites</h1>
 
-          <div data-quote-card-root></div>
+          <div class="favorites-content">
+            <load src="./partials/favorites-qoute.html" />
 
-          <ul data-favorites-list></ul>
-
-          <div
-            class="favorites-empty is-hidden"
-            data-empty-favorites
-          >
-            <p>
-              It appears that you haven't added any
-              exercises to your favorites yet.
-            </p>
+            <div>
+              <ul data-favorites-list></ul>
+              <div
+                class="favorites-empty is-hidden"
+                data-empty-favorites
+              >
+                <p>
+                  It appears that you haven't added any
+                  exercises to your favorites yet.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
