@@ -79,13 +79,19 @@
 }
 
 .favorite-card-badge {
-  padding: 5px 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 76px;
+  height: 26px;
+  padding: 5px 8px;
   border: 1px solid var(--color-primary);
   border-radius: 15px;
 
   font-weight: 500;
   font-size: 12px;
-  line-height: 1.17;
+  line-height: 1;
   text-transform: uppercase;
 }
 
@@ -253,10 +259,26 @@
 
   [data-favorites-list] {
     grid-template-columns: repeat(2, 1fr);
+    row-gap: 32px;
+    column-gap: 16px;
   }
 
   .favorites-empty {
     max-width: 560px;
+  }
+
+  .favorite-card-heading {
+    margin-bottom: 8px;
+  }
+
+  .favorite-card-title {
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .favorite-card-start-btn {
+    font-size: 16px;
+    line-height: 24px;
   }
 }
 
