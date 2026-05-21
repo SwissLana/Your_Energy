@@ -17,7 +17,11 @@ async function onSubscriptionSubmit(event) {
   const form = event.currentTarget;
   const email = form.elements.email.value.trim();
 
+  const button = form.querySelector('.subscribe-btn');
+
   try {
+    button.disabled = true;
+    
     await subscribe(email);
 
     iziToast.success({
@@ -27,9 +31,13 @@ async function onSubscriptionSubmit(event) {
 
     form.reset();
   } catch (error) {
+  
     iziToast.error({
       message: error.response?.data?.message || 'Subscription failed.',
       position: 'topRight',
     });
+    
+  } finally {
+    button.disabled = false;
   }
 }
