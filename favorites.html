@@ -27,9 +27,9 @@
     />
     <script type="module" crossorigin src="/Your_Energy/favorites.js"></script>
     <link rel="modulepreload" crossorigin href="/Your_Energy/assets/vendor-CaULtfQf.js">
-    <link rel="modulepreload" crossorigin href="/Your_Energy/assets/header-AMZmF5ET.js">
+    <link rel="modulepreload" crossorigin href="/Your_Energy/assets/header-Cmw2HDnC.js">
+    <link rel="stylesheet" crossorigin href="/Your_Energy/assets/header-Cl_GcQm9.css">
     <link rel="stylesheet" crossorigin href="/Your_Energy/assets/vendor-CKZoNpAO.css">
-    <link rel="stylesheet" crossorigin href="/Your_Energy/assets/header-gotFvdz4.css">
     <link rel="stylesheet" crossorigin href="/Your_Energy/assets/favorites-BGgwAOn6.css">
   </head>
 
@@ -216,11 +216,24 @@
 
     <template id="quote-card-template">
   <div class="quote-card">
-    <div class="quote-header">
-      <h3 class="quote-title">Quote of the day</h3>
+    <div class="quote-card-icon-wrapper">
+      <svg class="quote-card-icon" width="20" height="20" aria-hidden="true">
+        <use href="/Your_Energy/assets/sprite-B8tpJj_G.svg#icon-running-figure"></use>
+      </svg>
     </div>
-    <p class="quote-text" data-quote-text>Loading quote...</p>
-    <p class="quote-author" data-quote-author></p>
+
+    <div class="quote-content">
+      <div class="quote-header">
+        <h3 class="quote-title">Quote of the day</h3>
+
+        <svg class="quote-decor-icon" width="20" height="20" aria-hidden="true">
+          <use href="/Your_Energy/assets/sprite-B8tpJj_G.svg#icon-inverted-commas"></use>
+        </svg>
+      </div>
+
+      <p class="quote-text" data-quote-text>Loading quote...</p>
+      <p class="quote-author" data-quote-author></p>
+    </div>
   </div>
 </template>
 
