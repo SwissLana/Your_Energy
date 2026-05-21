@@ -16,14 +16,6 @@
   display: none;
 }
 
-.social-list a {
-  color: var(--color-primary);
-}
-
-.social-list svg {
-  fill: currentColor;
-}
-
 .burger-btn {
   display: flex;
   align-items: center;
@@ -31,12 +23,17 @@
 
   width: 32px;
   height: 32px;
+  padding: 0;
+
+  -webkit-tap-highlight-color: transparent;
 
   border: none;
   background: transparent;
+}
 
-  font-size: 28px;
-  line-height: 1;
+.burger-btn svg {
+  width: 32px;
+  height: 32px;
 }
 
 .mobile-menu {
@@ -66,60 +63,132 @@
 
 .mobile-menu-close {
   position: absolute;
-  top: 24px;
+  top: 20px;
   right: 20px;
+  padding: 0;
 
   border: none;
   background: transparent;
   color: inherit;
 
-  font-size: 32px;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.mobile-nav ul {
+.mobile-menu-close svg {
+  width: 32px;
+  height: 32px;
+}
+
+.mobile-menu-nav {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-}
-
-.mobile-nav a {
-  font-size: 18px;
-  font-weight: 500;
-}
-
-.mobile-social-list {
-  display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 16px;
 }
 
+.mobile-menu-nav a {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  color: var(--color-background);
+}
+
+.mobile-social-list {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
 .mobile-social-list svg {
-  fill: currentColor;
+  fill: var(--color-background);
+}
+
+.mobile-social-list-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  border: 1px solid rgba(244, 244, 244, 0.1);
+  border-radius: 10px;
+
+  cursor: pointer;
+  color: var(--color-background);
+}
+
+.mobile-social-list-link a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+.mobile-social-list-link svg {
+  width: 28px;
+  height: 28px;
+  fill: var(--color-background);
 }
 
 @media screen and (min-width: 768px) {
   .header {
-    padding-top: 24px;
-    padding-bottom: 24px;
+    padding: 24px 0;
+  }
+
+  .burger-btn {
+    display: none;
   }
 
   .header-nav {
-    display: block;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 233px;
+    height: 52px;
+    border-radius: 60px;
+    padding: 8px 50px;
+    background: var(--color-primary);
   }
 
   .header-nav-list {
     display: flex;
-    gap: 16px;
+    gap: 6px;
   }
 
   .header-nav-link {
-    padding: 10px 20px;
     border-radius: 30px;
-    transition: background-color var(--transition);
+    padding: 6px 12px;
+
+    font-family: var(--font-main);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+
+    cursor: pointer;
+
+    background-color: rgba(36, 36, 36, 0.08);
+    color: var(--color-background);
+
+    transition:
+      color var(--transition),
+      background-color var(--transition);
   }
 
+  .header-nav-link.active,
   .header-nav-link:hover,
   .header-nav-link:focus {
-    background-color: rgba(36, 36, 36, 0.08);
+    color: var(--color-primary);
+    background-color: var(--color-background);
   }
 
   .social-list {
@@ -127,27 +196,55 @@
     gap: 12px;
   }
 
-  .social-list a {
+  .social-list-link {
     display: flex;
     align-items: center;
     justify-content: center;
 
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
 
     border: 1px solid var(--color-border);
     border-radius: 10px;
+
+    cursor: pointer;
+    color: var(--color-primary);
+
+    transition:
+      background-color var(--transition),
+      border-color var(--transition),
+      color var(--transition);
   }
 
-  .social-list svg {
-    fill: var(--color-primary);
+  .social-list-link:hover,
+  .social-list-link:focus {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-background);
   }
 
-  .burger-btn {
-    display: none;
+  .social-list-link a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+  }
+
+  .social-list-link svg {
+    width: 28px;
+    height: 28px;
+    fill: currentColor;
   }
 
   .mobile-menu {
     display: none;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .header-nav {
+    width: 265px;
   }
 }
