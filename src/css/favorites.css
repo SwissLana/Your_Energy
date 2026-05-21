@@ -280,10 +280,40 @@
     font-size: 16px;
     line-height: 24px;
   }
+
+  .favorite-card-info {
+    column-gap: 16px;
+  }
 }
 
 @media screen and (min-width: 1440px) {
+  .favorites-layout {
+    display: grid;
+    grid-template-columns: 494px 826px;
+    column-gap: 32px;
+    align-items: start;
+  }
+
+  [data-quote-card-root] {
+    grid-column: 1;
+  }
+
   [data-favorites-list] {
-    grid-template-columns: repeat(3, 1fr);
+    grid-column: 2;
+    grid-template-columns: repeat(2, 405px);
+    column-gap: 16px;
+    row-gap: 32px;
+  }
+
+  .favorites-empty {
+    grid-column: 1 / -1;
+  }
+
+  .favorite-card-badges {
+    gap: 9px;
+  }
+
+  .favorite-info-item:nth-child(1) .favorite-info-value {
+    flex: 0 0 auto;
   }
 }
