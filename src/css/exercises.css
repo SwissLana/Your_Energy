@@ -11,15 +11,20 @@
 }
 
 .exercises-title {
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 1.1;
+  margin: 0;
+  color: var(--color-primary);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.12;
   letter-spacing: -0.02em;
 }
 
 .selected-category {
   color: var(--color-primary-light);
   font-size: 20px;
+  font-weight: 400;
+  line-height: 1.33;
+  letter-spacing: -0.02em;
 }
 
 .search-form {
@@ -125,66 +130,166 @@
   font-size: 14px;
 }
 
-/* EXERCISE CARDS */
+/* ======================================================================= */
+/* EXERCISE CARDS                                                          */
+/* ======================================================================= */
 
 [data-exercises-list] {
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
+  align-items: stretch;
 }
 
 .exercise-card {
-  padding: 20px;
-  border-radius: 20px;
+  padding: 24px;
+  border-radius: 15px;
   background-color: var(--color-white);
+
+  display: flex;
+  flex-direction: column;
 }
 
 .exercise-card-top {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
+  justify-content: space-between;
+  margin-bottom: 33px;
+}
+
+.exercise-card-badge-rating {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .exercise-card-badge {
-  padding: 4px 10px;
-
+  padding: 5px 14px;
   border: 1px solid var(--color-primary);
-  border-radius: 20px;
+  border-radius: 15px;
 
+  font-weight: 500;
   font-size: 12px;
+  line-height: 1.17;
+  text-transform: uppercase;
 }
 
 .exercise-card-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
   font-size: 14px;
+  line-height: 1.29;
+}
+
+.star-icon {
+  color: #eea10c;
 }
 
 .exercise-start-btn {
-  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
+  padding: 0;
   border: none;
+
   background: transparent;
+  color: var(--color-primary);
 
   font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29;
+
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.exercise-start-btn:hover {
+  transform: scale(1.05);
+}
+
+.arrow-icon {
+  stroke: var(--color-primary);
+  fill: none;
+  stroke-width: 2.6px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.exercise-card-title-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  width: 100%;
+  margin-bottom: 16px;
+
+  overflow: hidden;
+}
+
+.run-icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 35px;
+  height: 35px;
+
+  background-color: #242424;
+  border-radius: 50%;
+}
+
+.run-icon {
+  color: #ffffff;
 }
 
 .exercise-card-title {
-  margin-bottom: 16px;
-  font-size: 22px;
-  font-weight: 700;
+  color: var(--color-primary);
+
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.17;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 1;
 }
 
 .exercise-card-info {
   display: flex;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 10px;
+  column-gap: 16px;
+  row-gap: 4px;
 
-  font-size: 13px;
-  color: var(--color-primary-light);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: auto;
+
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: nowrap;
 }
 
-.exercise-card-info span {
+.info-item {
+  color: rgba(36, 36, 36, 0.4);
+
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 150%;
+
+  white-space: nowrap;
+}
+
+.exercise-card-info .info-value {
+  margin-left: 4px;
+
   color: var(--color-primary);
+  font-weight: 400;
 }
 
 /* PAGINATION */
@@ -192,24 +297,86 @@
 [data-pagination] {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-  gap: 8px;
+
+  gap: 4px;
   margin-top: 32px;
 }
 
-.pagination-btn {
-  width: 36px;
-  height: 36px;
+.pagination-btn--nav + .pagination-btn:not(.pagination-btn--nav) {
+  margin-left: 16px;
+}
 
-  border: 1px solid var(--color-border);
-  border-radius: 50%;
+.pagination-btn:not(.is-active):not(.pagination-btn--nav) + .pagination-btn--nav,
+.pagination-ellipsis + .pagination-btn--nav {
+  margin-left: 16px;
+}
+
+.pagination-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 36px;
+  height: 36px;
+  padding: 0 8px;
+
+  border: 1px solid transparent;
+  border-radius: 100px;
 
   background: transparent;
+  cursor: pointer;
+
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.33;
+  letter-spacing: 0.04em;
+
+  transition:
+    background-color var(--transition),
+    color var(--transition),
+    border-color var(--transition);
+}
+
+.pagination-btn:not(.is-active):not(.pagination-btn--nav) {
+  color: var(--color-primary-light);
 }
 
 .pagination-btn.is-active {
-  background-color: var(--color-primary);
-  color: var(--color-white);
+  border-color: var(--color-primary);
+}
+
+.pagination-btn--nav {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.pagination-btn--nav:disabled {
+  border-color: var(--color-border);
+  color: var(--color-primary-light);
+  cursor: not-allowed;
+}
+
+.pagination-btn--nav:hover:not(:disabled) .pagination-icon {
+  transform: scale(1.2);
+}
+
+.pagination-icon {
+  width: 20px;
+  height: 20px;
+  transition: transform var(--transition);
+}
+
+.pagination-ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  color: var(--color-primary-light);
 }
 
 /* TABLET */
@@ -219,6 +386,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 24px;
   }
 
   [data-categories-list] {
@@ -233,11 +401,25 @@
 /* DESKTOP */
 
 @media screen and (min-width: 1440px) {
+  .exercises-top {
+    margin-bottom: -24px;
+  }
+
+  .exercises-title {
+    font-size: 44px;
+    line-height: 1.09;
+  }
+
+  .selected-category {
+    font-size: 24px;
+    line-height: 1.33;
+  }
+
   [data-categories-list] {
     grid-template-columns: repeat(3, 1fr);
   }
 
   [data-exercises-list] {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
