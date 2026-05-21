@@ -101,12 +101,79 @@ export function createExercisesMarkup(exercises) {
     .join('');
 }
 
-// 3. Генерація однієї картки для сторінки обраного
-export function createFavoriteExerciseCardMarkup(exercise) {
-  return createExerciseCardMarkup(exercise, true);
+function capitalizeFirst(str) {
+  return typeof str === 'string' && str.length > 0
+    ? str.charAt(0).toUpperCase() + str.slice(1)
+    : str;
+}
+
+export function createFavoriteCardMarkup(exercise) {
+  const { _id, name, burnedCalories, bodyPart, target } = exercise;
+
+  const bodyPartText = capitalizeFirst(bodyPart);
+  const targetText = capitalizeFirst(target);
+  const burnedText = `${burnedCalories} / 3 min`;
+
+  return `
+    <li class="favorite-card" data-id="${_id}">
+      <div class="favorite-card-top">
+        <div class="favorite-card-badges">
+          <span class="favorite-card-badge">WORKOUT</span>
+          <button
+            class="favorite-card-remove-btn"
+            type="button"
+            data-favorite-remove
+            data-id="${_id}"
+            aria-label="Remove exercise from favorites"
+          >
+            <svg class="favorite-card-trash-icon" width="16" height="16">
+              <use href="./img/sprite.svg#icon-trash"></use>
+            </svg>
+          </button>
+        </div>
+
+        <button
+          class="favorite-card-start-btn"
+          type="button"
+          data-exercise-start
+          data-id="${_id}"
+          aria-label="Open exercise details"
+        >
+          Start
+          <svg class="favorite-card-arrow-icon" width="16" height="16">
+            <use href="./img/sprite.svg#icon-arrow-right"></use>
+          </svg>
+        </button>
+      </div>
+
+      <div class="favorite-card-heading">
+        <div class="favorite-card-icon-wrap">
+          <svg class="favorite-card-icon" width="14" height="14">
+            <use href="./img/sprite.svg#icon-running-figure"></use>
+          </svg>
+        </div>
+        <h3 class="favorite-card-title">${name}</h3>
+      </div>
+
+      <ul class="favorite-card-info">
+        <li class="favorite-info-item" title="Burned calories: ${burnedText}">
+          <span class="favorite-info-label">Burned calories:&nbsp;</span>
+          <span class="favorite-info-value">${burnedText}</span>
+        </li>
+        <li class="favorite-info-item" title="Body part: ${bodyPartText}">
+          <span class="favorite-info-label">Body part:&nbsp;</span>
+          <span class="favorite-info-value">${bodyPartText}</span>
+        </li>
+        <li class="favorite-info-item" title="Target: ${targetText}">
+          <span class="favorite-info-label">Target:&nbsp;</span>
+          <span class="favorite-info-value">${targetText}</span>
+        </li>
+      </ul>
+    </li>
+  `;
 }
 
 // 4. Генерація списку обраних карток
 export function createFavoriteExercisesMarkup(exercises) {
-  return exercises.map(createFavoriteExerciseCardMarkup).join('');
+  return exercises.map(createFavoriteCardMarkup).join('');
 }
