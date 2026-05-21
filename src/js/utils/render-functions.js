@@ -126,7 +126,7 @@ export function createFavoriteCardMarkup(exercise) {
             data-id="${_id}"
             aria-label="Remove exercise from favorites"
           >
-            <svg class="favorite-card-trash-icon" width="16" height="16" aria-hidden="true" focusable="false">
+            <svg class="favorite-card-trash-icon" width="16" height="16">
               <use href="./img/sprite.svg#icon-trash"></use>
             </svg>
           </button>
@@ -140,7 +140,7 @@ export function createFavoriteCardMarkup(exercise) {
           aria-label="Open exercise details"
         >
           Start
-          <svg class="favorite-card-arrow-icon" width="16" height="16" aria-hidden="true" focusable="false">
+          <svg class="favorite-card-arrow-icon" width="16" height="16">
             <use href="./img/sprite.svg#icon-arrow-right"></use>
           </svg>
         </button>
@@ -148,7 +148,7 @@ export function createFavoriteCardMarkup(exercise) {
 
       <div class="favorite-card-heading">
         <div class="favorite-card-icon-wrap">
-          <svg class="favorite-card-icon" width="14" height="14" aria-hidden="true" focusable="false">
+          <svg class="favorite-card-icon" width="14" height="14">
             <use href="./img/sprite.svg#icon-running-figure"></use>
           </svg>
         </div>
