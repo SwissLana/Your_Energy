@@ -22,7 +22,9 @@ export function createCategoriesMarkup(categories) {
 }
 
 // 1. Основна функція для генерації однієї картки (універсальна)
-export function createExerciseCardMarkup(exercise, isFavorite = false) {
+export function createExerciseCardMarkup(exercise, options = {}) {
+  const isFavorite =
+    typeof options === 'boolean' ? options : options?.isFavorite ?? false;
   const { _id, name, rating, burnedCalories, bodyPart, target } = exercise;
 
   const formattedRating = Number(rating).toFixed(1);
