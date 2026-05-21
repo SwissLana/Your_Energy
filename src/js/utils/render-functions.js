@@ -24,10 +24,8 @@ export function createCategoriesMarkup(categories) {
 // 1. Основна функція для генерації однієї картки (універсальна)
 export function createExerciseCardMarkup(exercise, options = {}) {
   const isFavorite =
-    typeof options === 'boolean' ? options : options?.isFavorite ?? false;
+    typeof options === 'boolean' ? options : (options?.isFavorite ?? false);
   const { _id, name, rating, burnedCalories, bodyPart, target } = exercise;
-
-  const formattedRating = Number(rating).toFixed(1);
 
   // Перевіряємо статус: для "обраного" рендеримо кошик, для звичайного — рейтинг
   const topBadgeAction = isFavorite
@@ -43,7 +41,10 @@ export function createExerciseCardMarkup(exercise, options = {}) {
           </svg>
         </button>
       `
-    : `
+    : (() => {
+        // Оптимізація: рейтинг обчислюється тільки для звичайних карток
+        const formattedRating = Number(rating).toFixed(1);
+        return `
         <span class="exercise-card-rating">
           <span class="rating-value">${formattedRating}</span>
           <svg class="star-icon" width="14" height="14">
@@ -51,6 +52,7 @@ export function createExerciseCardMarkup(exercise, options = {}) {
           </svg>
         </span>
       `;
+      })();
 
   return `
     <li class="exercise-card" data-id="${_id}">
