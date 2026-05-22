@@ -43,14 +43,18 @@ export function createExerciseCardMarkup(exercise, options = {}) {
           </svg>
         </button>
       `
-    : `
+    : (() => {
+        // Оптимізація: рейтинг обчислюється тільки для звичайних карток
+        const formattedRating = Number(rating).toFixed(1);
+        return `
         <span class="exercise-card-rating">
-          <span class="rating-value">${Number(rating).toFixed(1)}</span>
+          <span class="rating-value">${formattedRating}</span>
           <svg class="star-icon" width="14" height="14" aria-hidden="true" focusable="false">
             <use href="./img/sprite.svg#icon-card-rating-star"></use>
           </svg>
         </span>
       `;
+      })();
 
   return `
     <li class="exercise-card" data-id="${_id}">
@@ -112,5 +116,5 @@ export function createFavoriteExerciseCardMarkup(exercise) {
 
 // 4. Генерація списку обраних карток
 export function createFavoriteExercisesMarkup(exercises) {
-  return exercises.map(createFavoriteExerciseCardMarkup).join('');
+  return exercises.map(createFavoriteCardMarkup).join('');
 }

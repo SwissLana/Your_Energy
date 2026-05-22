@@ -1,10 +1,11 @@
 import { getFavorites, removeFavorite } from '../utils/storage';
+import { fetchExerciseById } from '../api/exercises-api';
 
 import { createFavoriteExercisesMarkup } from '../utils/render-functions';
 
+import { showLoader, hideLoader } from '../utils/loader';
 import { initExerciseModal } from '../components/modal';
 import { initQuote } from '../components/quote';
-import { initSubscription } from '../components/subscription';
 import { initScrollUp } from '../components/scroll-up';
 import { initHeader } from '../components/header';
 
@@ -15,7 +16,6 @@ const refs = {
 
 initHeader();
 initQuote();
-initSubscription();
 initScrollUp();
 initExerciseModal();
 
@@ -23,10 +23,10 @@ renderFavorites();
 
 refs.favoritesList?.addEventListener('click', onRemoveFavoriteClick);
 
-function renderFavorites() {
-  const favorites = getFavorites();
+async function renderFavorites() {
+  const favoriteIds = getFavorites();
 
-  if (!favorites.length) {
+  if (!favoriteIds.length) {
     refs.favoritesList.innerHTML = '';
     refs.emptyMessage.classList.remove('is-hidden');
     return;
@@ -34,23 +34,52 @@ function renderFavorites() {
 
   refs.emptyMessage.classList.add('is-hidden');
 
-  // 1. Визначаємо ліміт карток залежно від ширини екрана користувача
-  // Якщо екран десктопний (від 1168px), ставимо ліміт 6, інакше (таблет/мобільний) — 10
-  const limit = window.innerWidth >= 1168 ? 6 : 10;
+  try {
+    showLoader();
 
-  // 2. Обрізаємо масив відповідно до знайденого ліміту
-  const limitedFavorites = favorites.slice(0, limit);
-  refs.favoritesList.innerHTML =
-    createFavoriteExercisesMarkup(limitedFavorites);
+    const results = await Promise.allSettled(
+      favoriteIds.map(id => fetchExerciseById(id))
+    );
+
+    const exercises = results
+      .filter(result => result.status === 'fulfilled')
+      .map(result => result.value);
+
+    const limit = window.innerWidth >= 1168 ? 6 : 10;
+
+    // 2. Обрізаємо масив відповідно до знайденого ліміту
+    const limitedFavorites = favorites.slice(0, limit);
+
+    if (!exercises.length) {
+      refs.favoritesList.innerHTML = '';
+      refs.emptyMessage.classList.remove('is-hidden');
+      return;
+    }
+
+    refs.favoritesList.innerHTML =
+      createFavoriteExercisesMarkup(limitedFavorites);
+  } catch {
+    refs.favoritesList.innerHTML = '';
+    refs.emptyMessage.classList.remove('is-hidden');
+  } finally {
+    hideLoader();
+  }
 }
 
 function onRemoveFavoriteClick(event) {
-  const button = event.target.closest('.favorite-remove-btn');
+  const button = event.target.closest('[data-favorite-remove]');
 
   if (!button) return;
 
   removeFavorite(button.dataset.id);
-  renderFavorites();
+
+  const card = button.closest('.favorite-card');
+  card?.remove();
+
+  if (!getFavorites().length) {
+    refs.favoritesList.innerHTML = '';
+    refs.emptyMessage.classList.remove('is-hidden');
+  }
 }
 
 // Дозволяє сторінці миттєво підлаштовувати кількість карток при зміні розміру вікна

@@ -31,21 +31,31 @@
           <h1 class="favorites-title">Favorites</h1>
 
           <div class="favorites-main-content">
-            <div data-quote-card-root></div>
+            <!-- <div data-quote-card-root></div> -->
+            <load src="./partials/favorites-qoute.html" />
             <ul data-favorites-list></ul>
           </div>
 
-          <div class="favorites-empty is-hidden" data-empty-favorites>
-            <p>
-              It appears that you haven't added any exercises to your favorites
-              yet.
-            </p>
+            
+            <ul data-favorites-list></ul>
+
+            <div
+              class="favorites-empty is-hidden"
+              data-empty-favorites
+            >
+              <p>
+                It appears that you haven't added any
+                exercises to your favorites yet. To get
+                started, you can add exercises that you
+                like to your favorites for easier access
+                in the future.
+              </p>
+            </div>
+            </div>
           </div>
         </div>
       </section>
     </main>
-
-    <load src="./partials/footer.html" />
 
     <button type="button" data-scroll-up aria-label="Scroll to top">↑</button>
 
