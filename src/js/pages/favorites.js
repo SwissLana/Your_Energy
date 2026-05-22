@@ -34,7 +34,14 @@ function renderFavorites() {
 
   refs.emptyMessage.classList.add('is-hidden');
 
-  refs.favoritesList.innerHTML = createFavoriteExercisesMarkup(favorites);
+  // 1. Визначаємо ліміт карток залежно від ширини екрана користувача
+  // Якщо екран десктопний (від 1168px), ставимо ліміт 6, інакше (таблет/мобільний) — 10
+  const limit = window.innerWidth >= 1168 ? 6 : 10;
+
+  // 2. Обрізаємо масив відповідно до знайденого ліміту
+  const limitedFavorites = favorites.slice(0, limit);
+  refs.favoritesList.innerHTML =
+    createFavoriteExercisesMarkup(limitedFavorites);
 }
 
 function onRemoveFavoriteClick(event) {
@@ -45,3 +52,6 @@ function onRemoveFavoriteClick(event) {
   removeFavorite(button.dataset.id);
   renderFavorites();
 }
+
+// Дозволяє сторінці миттєво підлаштовувати кількість карток при зміні розміру вікна
+window.addEventListener('resize', renderFavorites);

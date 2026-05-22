@@ -134,163 +134,278 @@
 /* EXERCISE CARDS                                                          */
 /* ======================================================================= */
 
-[data-exercises-list] {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-  align-items: stretch;
+@media screen {
+  /* Базова сітка для списку */
+  [data-exercises-list] {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    align-items: stretch;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  /* Головна картка */
+  .exercise-card {
+    box-sizing: border-box;
+    padding: 24px;
+    border-radius: 15px;
+    background-color: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Розподіляє верх, середину та низ по висоті */
+    width: 100%;
+    max-width: 335px;
+    min-height: 141px;
+  }
+
+  /* Верхня лінія */
+  .exercise-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 33px;
+  }
+
+  .exercise-card-badge-rating {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    height: 100%;
+  }
+
+  .exercise-card-badge {
+    padding: 5px 14px;
+    border: 1px solid var(--color-primary);
+    border-radius: 15px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.17;
+    text-transform: uppercase;
+  }
+
+  .exercise-card-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    line-height: 1.29;
+  }
+
+  .star-icon {
+    color: #eea10c;
+    flex-shrink: 0;
+  }
+
+  /* Кнопка Start */
+  .exercise-start-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--color-primary);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.29;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .exercise-start-btn:hover {
+    transform: scale(1.05);
+  }
+
+  .arrow-icon {
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2.6px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+  }
+
+  /* Середня частина: Назва вправи */
+  .exercise-card-title-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+
+  .run-icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    background-color: #242424;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .run-icon {
+    color: #ffffff;
+    stroke: none;
+  }
+
+  .exercise-card-title {
+    color: var(--color-primary);
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.17;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 1;
+  }
+
+  /* ==========================================================================
+     Нижня панель статистики (Еластичне форматування під Figma)
+     ========================================================================== */
+
+  .exercise-card-info {
+    display: flex;
+    flex-wrap: nowrap;     
+    align-items: center;
+
+    column-gap: 10px;
+    /* Точний рожевий зазор 10px з макета Figma */
+
+    margin-top: auto;
+    /* Притискає статистику до самого низу картки */
+    width: 100%;
+    overflow: hidden;
+    /* Захист від вилізання тексту */
+  }
+
+  /* Загальні правила для кожної з трьох груп */
+  .info-group {
+    display: inline-flex;
+    align-items: center;
+    font-size: 12px;
+    line-height: 1.5;
+    min-width: 0;
+    /* Дозволяє внутрішньому тексту вмикати три крапки */
+  }
+
+  /* --- УПРАВЛІННЯ ПРІОРИТЕТАМИ СТИСКАННЯ --- */
+
+  /* Лівий блок (Калорії) */
+  .info-group:nth-child(1) {
+    flex-grow: 1;
+    flex-shrink: 1;
+    /* Якщо місця замало, він може делікатно стиснутися */
+  }
+
+  /* Центральний блок (Частина тіла) */
+  .info-group:nth-child(2) {
+    flex-grow: 0;
+    flex-shrink: 0;
+    /* 👈 ЗАБОРОНЯЄМО СТИСКАТИСЯ. Body part завжди видно повністю! */
+  }
+
+  /* Правий блок (Ціль) */
+  .info-group:nth-child(3) {
+    flex-grow: 1;
+    flex-shrink: 1;
+    /* Бере на себе основне стискання для довгих назв м'язів */
+  }
+
+  /* Назви полів (сірі, з макета Figma) */
+  .card-info-label {
+    font-size: 12px;
+    color: var(--color-primary) !important;
+    opacity: 0.4 !important;
+    /* Чіткі 40% прозорості сірого кольору */
+    font-weight: 400;
+    margin-right: 4px;
+    /* Мікро-зазор після двокрапки */
+    flex-shrink: 0;
+    /* Самі підписи ніколи не мають права ховатися */
+  }
+
+  /* Значення полів (темні цифри та слова) */
+  .info-value {
+    display: inline-block;
+      /* або flex, залежно від вашої верстки */
+      font-size: 12px;
+      /* 👈 ФІКС: міняємо 14px на 12px за макетом */
+      
+      line-height: 150%;
+      /* або 1.5 (150%) як у Figma */
+    color: var(--color-primary);
+    font-weight: 400;
+    text-transform: capitalize;
+    /* Автоматично робить першу літеру великою */
+
+    /* 🛠 ФІКС ТРЬОХ КРАПОК: тепер текст ніколи не стрибне вниз, а плавно обріжеться */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-shrink: 1;
+  }
+
+  /* ========================================================================== 
+       Стилі для картки у розділі Favorites (Елементи кнопки видалення) 
+       ========================================================================= */
+
+ 
+
+  .favorite-remove-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0 !important;
+    /* Примусово знищує сторонній відступ 20px */
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+    font-size: 0 !important;
+    /* Примусово знищує приховану базову лінію */
+    line-height: 0;
+  }
+
+  .trash-icon {
+    display: block;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    /* Захист від сторонніх маржинів */
+    stroke: var(--color-primary);
+    fill: none;
+    transition: stroke 0.2s ease;
+  }
+
+  /* Ефекти при наведенні та фокусі */
+
+  .favorite-remove-btn:hover,
+  .favorite-remove-btn:focus {
+    transform: scale(1.1);
+
+    /* Легке збільшення кнопки */
+  }
+
+  .favorite-remove-btn:hover .trash-icon,
+  .favorite-remove-btn:focus .trash-icon {
+    stroke: #e74c3c;
+    /* Смітник стає червоним при наведенні */
+
+    /* fill: #e74c3c; (якщо іконка із заливкою) */
+  }
+ 
 }
 
-.exercise-card {
-  padding: 24px;
-  border-radius: 15px;
-  background-color: var(--color-white);
 
-  display: flex;
-  flex-direction: column;
-}
-
-.exercise-card-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 33px;
-}
-
-.exercise-card-badge-rating {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.exercise-card-badge {
-  padding: 5px 14px;
-  border: 1px solid var(--color-primary);
-  border-radius: 15px;
-
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.17;
-  text-transform: uppercase;
-}
-
-.exercise-card-rating {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-
-  font-size: 14px;
-  line-height: 1.29;
-}
-
-.star-icon {
-  color: #eea10c;
-}
-
-.exercise-start-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-
-  padding: 0;
-  border: none;
-
-  background: transparent;
-  color: var(--color-primary);
-
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.29;
-
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.exercise-start-btn:hover {
-  transform: scale(1.05);
-}
-
-.arrow-icon {
-  stroke: var(--color-primary);
-  fill: none;
-  stroke-width: 2.6px;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.exercise-card-title-container {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-
-  width: 100%;
-  margin-bottom: 16px;
-
-  overflow: hidden;
-}
-
-.run-icon-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 35px;
-  height: 35px;
-
-  background-color: #242424;
-  border-radius: 50%;
-}
-
-.run-icon {
-  color: #ffffff;
-}
-
-.exercise-card-title {
-  color: var(--color-primary);
-
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 1.17;
-
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  flex-shrink: 1;
-}
-
-.exercise-card-info {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  column-gap: 16px;
-  row-gap: 4px;
-
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  margin-top: auto;
-
-  font-size: 12px;
-  line-height: 1.5;
-  white-space: nowrap;
-}
-
-.info-item {
-  color: rgba(36, 36, 36, 0.4);
-
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 150%;
-
-  white-space: nowrap;
-}
-
-.exercise-card-info .info-value {
-  margin-left: 4px;
-
-  color: var(--color-primary);
-  font-weight: 400;
-}
 
 /* PAGINATION */
 
@@ -308,7 +423,8 @@
   margin-left: 16px;
 }
 
-.pagination-btn:not(.is-active):not(.pagination-btn--nav) + .pagination-btn--nav,
+.pagination-btn:not(.is-active):not(.pagination-btn--nav)
+  + .pagination-btn--nav,
 .pagination-ellipsis + .pagination-btn--nav {
   margin-left: 16px;
 }
@@ -379,6 +495,7 @@
   color: var(--color-primary-light);
 }
 
+
 /* TABLET */
 
 @media screen and (min-width: 768px) {
@@ -393,13 +510,41 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  
   [data-exercises-list] {
-    grid-template-columns: repeat(2, 1fr);
+    display: grid;
+    /* ФІКС: minmax(0, 344px) дозволяє карткам плавно зменшуватися, якщо падінги секції затиснуть екран */
+    grid-template-columns: repeat(2, minmax(0, 344px));
+
+    /* ФІКС: рівномірно розподіляємо вільний простір МІЖ двома стовпчиками (justify-content) */
+    justify-content: center;
+    gap: 32px 16px; 
+    width: 100%;
+    max-width: 704px; 
+    /* ФІКС: центруємо всю сітку на екрані планшета */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* 2. Адаптація габаритів картки */
+  .exercise-card {
+    max-width: 100%;
+    width: 100%;
+    /* Знімаємо мобільне обмеження 335px, картка еластично заповнює свою ячейку grid */
+  }
+
+  .exercise-card-info {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    /* Рівняємо текст по лівому краю */
+    column-gap: 16px;
+    /* Збільшуємо відстань між групами на планшеті до 16px, як у Figma */
+    width: 100%;
   }
 }
 
-/* DESKTOP */
-
+/* DESKTOP */ 
 @media screen and (min-width: 1440px) {
   .exercises-top {
     margin-bottom: -24px;
@@ -419,7 +564,104 @@
     grid-template-columns: repeat(3, 1fr);
   }
 
+
   [data-exercises-list] {
-    grid-template-columns: repeat(2, 1fr);
-  }
+    /* Колонки та зазори (32px / 16px) успадковуються з таблета, міняємо тільки макс. ширину */
+    max-width: 900px;
+    /* 👈 ТОЧНИЙ ФІКС: Загальна ширина контейнера cards у Figma */
+    grid-template-columns: repeat(2, minmax(0, 442px));
+    /* Обмежуємо максимальний розгін однієї картки */
+    margin-left: 0;
+    /* Якщо за макетом весь блок притиснутий до лівого краю контенту */
+    margin-right: auto;
+  } 
+
+.exercise-card-info {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  /* 1. Штовхаємо групи до лівого, центрального та правого країв картки */
+  justify-content: space-between !important;
+
+  /* 2. Зазор між групами за макетом Figma */
+  gap: 16px !important;
+  column-gap: 16px !important;
+
+  /* 3. Жорстка ширина лінії з інспектора */
+  width: 100% !important;
+  max-width: 356px !important;
+  overflow: visible !important;
+}
+
+/* КРОК 1: Перетворюємо inline-теги <span> на повноцінні флекс-блоки */
+.exercise-card-info .info-group {
+  display: flex !important;
+  /* 👈 ГОЛОВНИЙ ФІКС: ліквідує ефект inline-тегу span */
+  align-items: center !important;
+  gap: 4px !important;
+  /* Зазор між "Target:" та "Adductors" */
+
+  flex-grow: 1 !important;
+  /* Дозволяємо тексту займати вільне місце */
+  flex-shrink: 1 !important;
+  /* Дозволяємо безпечно стискатися за потреби */
+  flex-basis: auto !important;
+  min-width: 0 !important;
+}
+
+/* КРОК 2: Правий третій блок (Target) притискаємо суворо до правого краю */
+.exercise-card-info .info-group:nth-child(3) {
+  justify-content: flex-end !important;
+}
+
+/* КРОК 3: Фіксуємо текстові значення, щоб вони не ховалися в крапки і не стрибали */
+.exercise-card-info .info-value {
+  display: inline-block !important;
+  font-size: 12px !important;
+  white-space: nowrap !important;
+  /* Текст не переноситься, йде в один рядок */
+  overflow: visible !important;
+  /* Дозволяємо тексту розгортатися повністю */
+  text-overflow: clip !important;
+  /* Прибираємо три крапки */
+  flex-shrink: 0 !important;
+  /* 👈 ЗАБОРОНЯЄМО браузеру стискати самі літери */
+}
+
+/* Сірі макетні підписи */
+.exercise-card-info .card-info-label {
+  font-size: 12px !important;
+  flex-shrink: 0 !important;
+  /* Підписи ("Body part:") ніколи не ховаються */
+}
+
+/* ==========================================================================
+     СТИЛІ ДЛЯ СТОРІНКИ FAVORITES
+     ========================================================================== */
+.favorites-main-content {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  column-gap: 32px;
+  width: 100%;
+  max-width: 1300px;
+  margin-top: 40px;
+}
+
+[data-quote-card-root] {
+  flex-shrink: 0;
+  width: 442px;
+}
+
+.favorites.section [data-favorites-list] {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 405px)) !important;
+  gap: 32px 16px;
+  flex-shrink: 0;
+  width: 826px;
+  margin: 0;
+}
+  
+
 }
