@@ -13,7 +13,8 @@ import {
   getClickedPage,
 } from '../components/pagination';
 import { showLoader, hideLoader } from '../utils/loader';
-import { initExerciseModal } from '../components/modal';
+import { initExerciseModal } from '../components/exercise-modal';
+import { initRatingModal } from '../components/rating-modal';
 import { initQuote } from '../components/quote';
 import { initSubscription } from '../components/subscription';
 import { initScrollUp } from '../components/scroll-up';
@@ -41,6 +42,7 @@ initQuote();
 initSubscription();
 initScrollUp();
 initExerciseModal();
+initRatingModal();
 
 refs.filters.addEventListener('click', onFilterClick);
 refs.categoriesList.addEventListener('click', onCategoryClick);
