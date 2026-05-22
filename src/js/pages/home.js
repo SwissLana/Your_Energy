@@ -47,6 +47,13 @@ refs.categoriesList.addEventListener('click', onCategoryClick);
 refs.pagination.addEventListener('click', onPaginationClick);
 refs.searchForm.addEventListener('submit', onSearchSubmit);
 
+window.addEventListener('resize', () => {
+  if (state.mode === 'exercises' && state.category) {
+    state.page = 1;
+    loadExercises();
+  }
+});
+
 loadCategories();
 
 async function loadCategories() {
@@ -81,9 +88,15 @@ async function loadExercises() {
     refs.searchForm.classList.remove('is-hidden');
     refs.categoriesList.innerHTML = '';
 
+    let limit = 8; // Базовое значение для мобильных устройств (меньше 768px)
+
+    if (window.innerWidth >= 768) {
+      limit = 10; // И для планшетов, и для десктопов ставим лимит 10
+    }
+
     const params = {
       page: state.page,
-      limit: EXERCISES_PER_PAGE,
+      limit: limit,
     };
 
     if (state.keyword) {

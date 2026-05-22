@@ -21,11 +21,19 @@ export function createCategoriesMarkup(categories) {
   return categories.map(createCategoryCardMarkup).join('');
 }
 
+// Вспомогательная функция (капитализация)
+function capitalizeFirst(str) {
+  return typeof str === 'string' && str.length > 0
+    ? str.charAt(0).toUpperCase() + str.slice(1)
+    : str;
+}
+
+// 1. Универсальная функция для одной карточки
 export function createExerciseCardMarkup(exercise, options = {}) {
   const isFavorite =
     typeof options === 'boolean' ? options : (options?.isFavorite ?? false);
-  // const { _id, name, rating, burnedCalories, bodyPart, target } = exercise;
 
+  // Безопасное извлечение данных с дефолтными значениями (Плюс Варианта 1)
   const {
     _id,
     name = exercise.name || 'Unknown Exercise',
@@ -35,29 +43,32 @@ export function createExerciseCardMarkup(exercise, options = {}) {
     burnedCalories = exercise.burnedCalories || exercise.burned_calories || 0,
   } = exercise;
 
+  // Форматирование значений перед выводом
+  const bodyPartText = capitalizeFirst(bodyPart);
+  const targetText = capitalizeFirst(target);
+  const burnedText = `${burnedCalories} / 3 min`;
+
+  // Переключатель верхней панели: Корзина vs Рейтинг
   const topBadgeAction = isFavorite
     ? `
-        <button class="favorite-remove-btn" type="button" data-id="${_id}" aria-label="Remove exercise from favorites">
+        <button class="favorite-remove-btn" type="button" data-id="${_id}" data-favorite-remove aria-label="Remove exercise from favorites">
           <svg class="trash-icon" width="16" height="16" aria-hidden="true" focusable="false">
             <use href="./img/sprite.svg#icon-trash"></use>
           </svg>
         </button>
       `
-    : (() => {
-        // Оптимізація: рейтинг обчислюється тільки для звичайних карток
-        const formattedRating = Number(rating).toFixed(1);
-        return `
+    : `
         <span class="exercise-card-rating">
-          <span class="rating-value">${formattedRating}</span>
+          <span class="rating-value">${Number(rating).toFixed(1)}</span>
           <svg class="star-icon" width="14" height="14" aria-hidden="true" focusable="false">
             <use href="./img/sprite.svg#icon-card-rating-star"></use>
           </svg>
         </span>
       `;
-      })();
 
+  // Единый HTML-шаблон (BEM-классы подгоняются через модификатор, если нужен разный фон)
   return `
-    <li class="exercise-card" data-id="${_id}">
+    <li class="exercise-card ${isFavorite ? 'exercise-card--favorite' : ''}" data-id="${_id}">
       <div class="exercise-card-top">
         <div class="exercise-card-badge-rating">
           <span class="exercise-card-badge">WORKOUT</span>
@@ -81,40 +92,34 @@ export function createExerciseCardMarkup(exercise, options = {}) {
         <h3 class="exercise-card-title">${name}</h3>
       </div>
 
-      <div class="exercise-card-info">
-        <span class="info-group">
+      <ul class="exercise-card-info">
+        <li class="info-item" title="Burned calories: ${burnedText}">
           <span class="card-info-label">Burned calories:</span>
-          <span class="info-value">${burnedCalories} / 3 min</span>
-        </span>
-        
-        <span class="info-group">
+          <span class="info-value">${burnedText}</span>
+        </li>
+        <li class="info-item" title="Body part: ${bodyPartText}">
           <span class="card-info-label">Body part:</span>
-          <span class="info-value">${bodyPart}</span>
-        </span>
-        
-        <span class="info-group">
+          <span class="info-value">${bodyPartText}</span>
+        </li>
+        <li class="info-item" title="Target: ${targetText}">
           <span class="card-info-label">Target:</span>
-          <span class="info-value">${target}</span>
-        </span>
-      </div>
-      
+          <span class="info-value">${targetText}</span>
+        </li>
+      </ul>
     </li>
   `;
 }
 
-// 2. Генерація списку звичайних карток
+// 2. Генерация списка обычных карточек
 export function createExercisesMarkup(exercises) {
   return exercises
     .map(exercise => createExerciseCardMarkup(exercise, false))
     .join('');
 }
 
-// 3. Генерація однієї картки для сторінки обраного
-export function createFavoriteExerciseCardMarkup(exercise) {
-  return createExerciseCardMarkup(exercise, true);
-}
-
-// 4. Генерація списку обраних карток
+// 3. Генерация списка избранных карточек
 export function createFavoriteExercisesMarkup(exercises) {
-  return exercises.map(createFavoriteCardMarkup).join('');
+  return exercises
+    .map(exercise => createExerciseCardMarkup(exercise, true))
+    .join('');
 }

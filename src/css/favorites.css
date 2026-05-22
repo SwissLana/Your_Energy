@@ -5,7 +5,6 @@
 
 .favorites-title {
   margin-bottom: 32px;
-
   font-size: 32px;
   font-weight: 700;
   line-height: 1.1;
@@ -18,24 +17,16 @@
   gap: 40px;
 }
 
- @media screen and (min-width: 768px) {
-  .favorites-content {
-    gap: 64px;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .favorites-content {
-    grid-template-columns: 494px 1.1fr;
-    gap: 32px;
-  }
+.favorites-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
 }
 
 [data-favorites-list] {
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
-
   list-style: none;
   padding: 0;
   margin: 0;
@@ -49,7 +40,12 @@
   line-height: 1.5;
 }
 
-.favorite-card {
+
+/* ==========================================================================
+   СТИЛИ КАРТОЧКИ УПРАЖНЕНИЯ (Синхронизировано с JS-структурой)
+   ========================================================================== */
+
+.exercise-card {
   display: flex;
   flex-direction: column;
   padding: 16px;
@@ -58,89 +54,96 @@
   min-width: 0;
 }
 
-.favorite-card-top {
+.exercise-card-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   margin-bottom: 25px;
 }
 
-.favorite-card-badges {
+/* Обертка для бейджа WORKOUT и кнопки удаления/рейтинга */
+.exercise-card-badge-rating {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.favorite-card-badge {
+.exercise-card-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   width: 76px;
   height: 26px;
   padding: 5px 8px;
   border: 1px solid var(--color-primary);
   border-radius: 15px;
-
   font-weight: 500;
   font-size: 12px;
   line-height: 1;
   text-transform: uppercase;
 }
 
-/* Кошик-кнопка видалення з вибраного */
-.favorite-card-remove-btn {
+/* Элемент рейтинга (для активного состояния, когда карточка не в избранном) */
+.exercise-card-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-primary);
+}
+
+.star-icon {
+  fill: #eea112;
+}
+
+/* Кнопка удаления из избранного (Иконка корзины) */
+.favorite-remove-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   width: 24px;
   height: 24px;
   padding: 0;
-
   border: none;
   background: transparent;
   color: var(--color-primary);
   cursor: pointer;
-
   transition: transform var(--transition);
 }
 
-.favorite-card-remove-btn:hover,
-.favorite-card-remove-btn:focus-visible {
+.favorite-remove-btn:hover,
+.favorite-remove-btn:focus-visible {
   transform: scale(1.1);
 }
 
-.favorite-card-trash-icon {
+.trash-icon {
   stroke: currentColor;
   fill: none;
 }
 
 /* Кнопка Start */
-.favorite-card-start-btn {
+.exercise-start-btn {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 0;
-
   border: none;
   background: transparent;
   cursor: pointer;
-
   font-weight: 500;
   font-size: 14px;
   line-height: 1.29;
   color: var(--color-primary);
-
   transition: transform 0.2s ease;
 }
 
-.favorite-card-start-btn:hover {
+.exercise-start-btn:hover {
   transform: scale(1.05);
 }
 
-.favorite-card-arrow-icon {
+.arrow-icon {
   stroke: var(--color-primary);
   fill: none;
   stroke-width: 2.6px;
@@ -148,107 +151,112 @@
   stroke-linejoin: round;
 }
 
-/* Заголовок: іконка-кружок з бігуном + назва вправи */
-.favorite-card-heading {
+/* Заголовок: иконка-кружок с бегуном + название упражнения */
+.exercise-card-title-container {
   display: flex;
   align-items: center;
   gap: 16px;
-
   width: 100%;
   margin-bottom: 16px;
   overflow: hidden;
 }
 
-.favorite-card-icon-wrap {
+.run-icon-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-
   flex-shrink: 0;
-
   width: 24px;
   height: 24px;
-
   background-color: #242424;
   border-radius: 50%;
 }
 
-.favorite-card-icon {
+.run-icon {
   color: #ffffff;
 }
 
-.favorite-card-title {
+.exercise-card-title {
   flex-shrink: 1;
-
   font-weight: 400;
   font-size: 24px;
   line-height: 1.17;
   color: var(--color-primary);
-
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* Нижня панель характеристик */
-.favorite-card-info {
+/* Нижняя панель характеристик */
+.exercise-card-info {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
   column-gap: 10px;
-
   list-style: none;
   padding: 0;
   margin: 0;
   margin-top: auto;
-
   font-size: 12px;
   line-height: 1.5;
 }
 
-.favorite-info-item {
+.info-item {
   display: flex;
   align-items: baseline;
-
   min-width: 0;
   height: 18px;
-
   font-weight: 400;
   font-size: 12px;
   line-height: 150%;
   cursor: default;
 }
 
-.favorite-info-label {
+.card-info-label {
   flex: 0 0 auto;
   white-space: nowrap;
   color: rgba(36, 36, 36, 0.4);
 }
 
-.favorite-info-value {
+.info-value {
   min-width: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
   font-weight: 400;
   color: var(--color-primary);
 }
 
-.favorite-info-item:nth-child(1) .favorite-info-value {
+/* Пропорции урезания значений для адаптивного троеточия */
+.info-item:nth-child(1) .info-value {
   flex: 0 1 40px;
 }
 
-.favorite-info-item:nth-child(2) .favorite-info-value {
+.info-item:nth-child(2) .info-value {
   flex: 0 1 31px;
 }
-.favorite-info-item:nth-child(3) .favorite-info-value {
+
+.info-item:nth-child(3) .info-value {
   flex: 0 1 19px;
 }
 
+
+/* ==========================================================================
+   АДАПТИВНЫЕ МЕДИА-ЗАПРОСЫ (ТАБЛЕТКА И ДЕСКТОП)
+   ========================================================================== */
+
+/* --- TABLET (768px +) --- */
 @media screen and (min-width: 768px) {
   .favorites-title {
     font-size: 44px;
+  }
+
+  .favorites-content {
+    gap: 64px;
+  }
+
+  .favorites-layout {
+    gap: 64px;
   }
 
   [data-favorites-list] {
@@ -261,47 +269,38 @@
     max-width: 560px;
   }
 
-  .favorite-card-heading {
+  .exercise-card-title-container {
     margin-bottom: 8px;
   }
 
-  .favorite-card-title {
+  .exercise-card-title {
     font-size: 24px;
     line-height: 32px;
   }
 
-  .favorite-card-start-btn {
+  .exercise-start-btn {
     font-size: 16px;
     line-height: 24px;
   }
 
-  .favorite-card-info {
+  .exercise-card-info {
     column-gap: 16px;
   }
 }
-.favorites-layout {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 40px;
-}
 
-@media screen and (min-width: 768px) {
-  .favorites-layout {
-    gap: 64px;
-  }
-}
-
+/* --- DESKTOP (1440px +) --- */
 @media screen and (min-width: 1440px) {
+  .favorites-content {
+    grid-template-columns: 494px 1.1fr;
+    gap: 32px;
+  }
+
   .favorites-layout {
     display: grid;
     grid-template-columns: 494px 826px;
     column-gap: 32px;
     align-items: start;
   }
-
-  /* [data-quote-card-root] {
-    grid-column: 1;
-  } */
 
   [data-favorites-list] {
     grid-column: 2;
@@ -314,11 +313,11 @@
     grid-column: 1 / -1;
   }
 
-  .favorite-card-badges {
+  .exercise-card-badge-rating {
     gap: 9px;
   }
 
-  .favorite-info-item:nth-child(1) .favorite-info-value {
+  .info-item:nth-child(1) .info-value {
     flex: 0 0 auto;
   }
 }
