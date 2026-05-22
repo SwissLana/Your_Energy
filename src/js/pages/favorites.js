@@ -1,10 +1,9 @@
 import { getFavorites, removeFavorite } from '../utils/storage';
 import { fetchExerciseById } from '../api/exercises-api';
-
 import { createFavoriteExercisesMarkup } from '../utils/render-functions';
-
 import { showLoader, hideLoader } from '../utils/loader';
-import { initExerciseModal } from '../components/modal';
+import { initExerciseModal } from '../components/exercise-modal';
+import { initRatingModal } from '../components/rating-modal';
 import { initQuote } from '../components/quote';
 import { initScrollUp } from '../components/scroll-up';
 import { initHeader } from '../components/header';
@@ -18,6 +17,7 @@ initHeader();
 initQuote();
 initScrollUp();
 initExerciseModal();
+initRatingModal();
 
 renderFavorites();
 

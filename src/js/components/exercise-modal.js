@@ -1,13 +1,16 @@
 import iziToast from 'izitoast';
-import sprite from "../../img/sprite.svg"
+import sprite from '../../img/sprite.svg';
 import { fetchExerciseById } from '../api/exercises-api';
+import { openRatingModal } from './rating-modal';
 import { addFavorite, removeFavorite, isFavorite } from '../utils/storage';
 
 const modalRoot = document.querySelector('[data-modal-root]');
 
+let backdropExercise = null;
 let currentExercise = null;
 let favorite = false;
 let favoriteBtn = null;
+let ratingBtn = null;
 
 export function initExerciseModal() {
   document.addEventListener('click', onExerciseStartClick);
@@ -22,28 +25,47 @@ async function onExerciseStartClick(event) {
     currentExercise = await fetchExerciseById(button.dataset.id);
     openExerciseModal(currentExercise);
   } catch (error) {
-    console.error("Failed to load exercise:", error);
+    console.error('Failed to load exercise:', error);
     iziToast.error({
       message: 'Failed to load exercise details.',
-      position: 'topRight',
+      position: 'topCenter',
     });
   }
 }
 
-function openExerciseModal(exercise) {
-  if (!modalRoot) return;
+export function openExerciseModal(exercise) {
+  if (!modalRoot || !exercise) return;
 
+  // show modal if it is already rendered but hidden
+  if (backdropExercise) {
+    backdropExercise.classList.remove('is-hidden');
+    return;
+  }
+
+  // generate mark up if it is first opening
   modalRoot.innerHTML = createExerciseModalMarkup(exercise);
+
+  backdropExercise = modalRoot.querySelector('[data-modal-backdrop]');
 
   document.body.classList.add('no-scroll');
   document.addEventListener('keydown', onEscPress);
   modalRoot.addEventListener('click', onClickCloseModal);
 
+  // add event listeners to buttons
   favoriteBtn = modalRoot.querySelector('[data-favorite-toggle]');
-  if (favoriteBtn) {
-    favoriteBtn.addEventListener('click', onClickToggleFavorite);
-  }
+  if (favoriteBtn) favoriteBtn.addEventListener('click', onClickToggleFavorite);
   
+  ratingBtn = modalRoot.querySelector('[data-give-rating]')
+  if (ratingBtn) ratingBtn.addEventListener('click', onClickOpenRatingModal)
+}
+
+function onClickOpenRatingModal() {
+  // hide exercise modal window
+  if (backdropExercise) {
+    backdropExercise.classList.add('is-hidden');
+  }
+
+  openRatingModal(currentExercise);  
 }
 
 function createExerciseModalMarkup(exercise) {
@@ -52,14 +74,14 @@ function createExerciseModalMarkup(exercise) {
   const starsMarkup = createRatingStarsMarkup(exercise.rating);
 
   // dynamically change button functionality display
-  const btnText = favorite ? 'Remove from favorites' : 'Add to favorites';  
+  const btnText = favorite ? 'Remove from favorites' : 'Add to favorites';
   const btnIconId = favorite ? 'icon-trash' : 'icon-heart';
 
   return `
-    <div class="modal-backdrop" data-modal-backdrop>
-      <div class="exercise-modal" role="dialog" aria-modal="true">
+    <div class="backdrop" data-modal-backdrop>
+      <div class="modal exercise-modal" role="dialog" aria-modal="true">
         <button
-          class="modal-close-btn"
+          class="close-btn exercise-close"
           type="button"
           data-modal-close
           aria-label="Close modal"
@@ -116,16 +138,25 @@ function createExerciseModalMarkup(exercise) {
               ${exercise.description || 'Description is not available.'}
             </p>
 
-            <button
-              class="favorite-modal-btn"
-              type="button"
-              data-favorite-toggle
-            >
-              <span>${btnText}</span>
-              <svg class="modal-btn-icon" width="18" height="18" aria-hidden="true">
-                <use href="${sprite}#${btnIconId}"></use>
-              </svg>
-            </button>           
+            <div class="btn-wrapper">
+              <button
+                class="modal-btn favorite-modal-btn"
+                type="button"
+                data-favorite-toggle
+              >
+                <span>${btnText}</span>
+                <svg class="modal-btn-icon" width="18" height="18" aria-hidden="true">
+                  <use href="${sprite}#${btnIconId}"></use>
+                </svg>
+              </button>
+              <button
+                class="modal-btn give-rating-btn"
+                type="button"
+                data-give-rating
+              >
+                Give a rating
+              </button>
+            </div>
           </div>          
         </div>           
       </div>
@@ -141,7 +172,7 @@ function createRatingStarsMarkup(rating) {
   let starsMarkup = '';
 
   // calculate coloring percentage for the star
-  const fillPercentage = Math.round((currentRating % 1) * 100)
+  const fillPercentage = Math.round((currentRating % 1) * 100);
 
   // create dynamic gradient
   starsMarkup += `
@@ -158,7 +189,7 @@ function createRatingStarsMarkup(rating) {
 
     if (i <= Math.floor(currentRating)) {
       // if star less or equal whole part of rating, it is colored orange
-      starFill = 'rgb(238, 161, 12)'; 
+      starFill = 'rgb(238, 161, 12)';
     } else if (i === Math.ceil(currentRating) && currentRating % 1 !== 0) {
       // if this is next star and there is a part, apply gradient based on id
       starFill = 'url(#partial-star-gradient)';
@@ -189,7 +220,7 @@ function onClickCloseModal(event) {
 
 function onClickToggleFavorite() {
   if (!favoriteBtn || !currentExercise) return;
-  
+
   const textSpan = favoriteBtn.querySelector('span');
   const svgUse = favoriteBtn.querySelector('use');
 
@@ -204,27 +235,47 @@ function onClickToggleFavorite() {
     textSpan.textContent = 'Remove from favorites';
     svgUse.setAttribute('href', `${sprite}#icon-trash`);
   }
-  
 }
 
 function onEscPress(event) {
-  if (event.key === 'Escape') {
+  if (event.key !== 'Escape') return;
+
+  const ratingModal = document.querySelector('[data-modal-rating]');
+
+  // on Escape close only rating modal if it is opened
+  if (ratingModal && !ratingModal.classList.contains('is-hidden')) {
+    const ratingForm = document.querySelector('.rating-form');
+    if (ratingForm) ratingForm.reset();
+    
+    ratingModal.classList.add('is-hidden');
+    
+    if (backdropExercise) backdropExercise.classList.remove('is-hidden');
+    return;
+  }
+
+  // close exercise modal, if it is opened and has content
+  if (modalRoot.innerHTML !== '') {
     closeModal();
   }
 }
 
-
 export function closeModal() {
   if (!modalRoot) return;
 
-  // remove event listener before cleaning html
+  // remove event listeners before cleaning html
   if (favoriteBtn) {
     favoriteBtn.removeEventListener('click', onClickToggleFavorite);
     favoriteBtn = null;
   }
 
+  if (ratingBtn) {
+    ratingBtn.removeEventListener('click', onClickOpenRatingModal)
+    ratingBtn = null;
+  }
+
   modalRoot.innerHTML = '';
   currentExercise = null;
+  backdropExercise = null;
   favorite = false;
 
   document.body.classList.remove('no-scroll');
