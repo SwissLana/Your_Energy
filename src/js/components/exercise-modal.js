@@ -1,4 +1,5 @@
 import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 import sprite from '../../img/sprite.svg';
 import { fetchExerciseById } from '../api/exercises-api';
 import { openRatingModal } from './rating-modal';
@@ -6,7 +7,7 @@ import { addFavorite, removeFavorite, isFavorite } from '../utils/storage';
 
 const modalRoot = document.querySelector('[data-modal-root]');
 
-let backdropExercise = null;
+export let backdropExercise = null;
 let currentExercise = null;
 let favorite = false;
 let favoriteBtn = null;

@@ -51,6 +51,7 @@
 .stars-radio-group .star-label:hover .star-icon,
 .stars-radio-group .star-label:hover ~ .star-label .star-icon {
   fill: rgba(238, 161, 12, 1);
+  transition: fill var(--transition);
 }
 
 .rating-inputs-container {
@@ -125,6 +126,46 @@
 }
 
 @media screen and (min-width: 1440px) {
+   .stars-radio-group
+    .star-label[for='star5']:hover
+    ~ .live-rating-value::before {
+    content: '5.0';
+  }
+
+  .stars-radio-group
+    .star-label[for='star4']:hover
+    ~ .live-rating-value::before {
+    content: '4.0';
+  }
+
+  .stars-radio-group
+    .star-label[for='star3']:hover
+    ~ .live-rating-value::before {
+    content: '3.0';
+  }
+
+  .stars-radio-group
+    .star-label[for='star2']:hover
+    ~ .live-rating-value::before {
+    content: '2.0';
+  }
+
+  .stars-radio-group
+    .star-label[for='star1']:hover
+    ~ .live-rating-value::before {
+    content: '1.0';
+  }
+
+  /* when hover, hide original text js and show css hint */
+ .stars-radio-group:has(.star-label:hover) .live-rating-value {
+    font-size: 0;
+  }
+
+  .stars-radio-group:has(.star-label:hover) .live-rating-value::before {
+    font-size: 14px;
+    color: var(--color-background);
+  } 
+
   .rating-submit-btn:hover {
     color: var(--color-background);
     background-color: transparent;

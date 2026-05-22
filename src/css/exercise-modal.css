@@ -176,7 +176,7 @@
 }
 
 .favorite-modal-btn {
-  gap: 4px;
+  gap: 8px;
   border: 1px solid transparent;
   margin-bottom: 10px;
   background-color: var(--color-background);
@@ -282,6 +282,7 @@
   .favorite-modal-btn {
     margin-bottom: 0;
     width: 201px;
+    gap: 2px;
   }
 
   .give-rating-btn {
