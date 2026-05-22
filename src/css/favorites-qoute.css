@@ -1,5 +1,6 @@
 .favorites-quote [data-quote-card-root] .quote-card {
   width: 100%;
+  height: auto;
 } 
 
 .favorites-quote-row {
@@ -27,10 +28,16 @@
 
 .favorites-image-card {
   min-width: 180px;
+  height: 120px;
   border-radius: 16px;
   overflow: hidden;
   background: #ffffff;
   box-shadow: 0 12px 32px rgba(29, 41, 61, 0.08);
+}
+@media screen and (min-width: 768px) {
+  .favorites-image-card {
+    height: 140px;
+  }
 }
 
 .favorites-image {
@@ -38,7 +45,6 @@
   width: 100%;
   height: auto;
   object-fit: cover;
-  height: 119px;
 }
 
 .favorites-quote-icon {
