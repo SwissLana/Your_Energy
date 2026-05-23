@@ -1,7 +1,6 @@
 import { fetchFilters, fetchExercises } from '../api/exercises-api';
 import {
   FILTERS,
-  FILTERS_PER_PAGE,
   EXERCISES_PER_PAGE,
 } from '../utils/constants';
 import {
@@ -13,7 +12,8 @@ import {
   getClickedPage,
 } from '../components/pagination';
 import { showLoader, hideLoader } from '../utils/loader';
-import { initExerciseModal } from '../components/modal';
+import { initExerciseModal } from '../components/exercise-modal';
+import { initRatingModal } from '../components/rating-modal';
 import { initQuote } from '../components/quote';
 import { initSubscription } from '../components/subscription';
 import { initScrollUp } from '../components/scroll-up';
@@ -25,6 +25,8 @@ const refs = {
   exercisesList: document.querySelector('[data-exercises-list]'),
   pagination: document.querySelector('[data-pagination]'),
   searchForm: document.querySelector('[data-search-form]'),
+  searchInput: document.querySelector('[data-search-form] input'),
+  searchClear: document.querySelector('[data-search-clear]'),
   selectedCategory: document.querySelector('[data-selected-category]'),
 };
 
@@ -36,16 +38,25 @@ const state = {
   mode: 'categories',
 };
 
+function getFiltersLimit() {
+  if (window.innerWidth < 768) return 9; // mobile
+  return 12;                             // tablet + desktop
+}
+
 initHeader();
 initQuote();
 initSubscription();
 initScrollUp();
 initExerciseModal();
+initRatingModal();
 
 refs.filters.addEventListener('click', onFilterClick);
 refs.categoriesList.addEventListener('click', onCategoryClick);
 refs.pagination.addEventListener('click', onPaginationClick);
 refs.searchForm.addEventListener('submit', onSearchSubmit);
+refs.searchForm.addEventListener('reset', () => refs.searchClear.classList.remove('is-visible'));
+refs.searchInput.addEventListener('input', onSearchInput);
+refs.searchClear.addEventListener('click', onSearchClear);
 
 loadCategories();
 
@@ -58,7 +69,11 @@ async function loadCategories() {
     refs.selectedCategory.textContent = '';
     refs.exercisesList.innerHTML = '';
 
-    const data = await fetchFilters(state.filter, state.page, FILTERS_PER_PAGE);
+    const data = await fetchFilters(
+      state.filter,
+      state.page,
+      getFiltersLimit()
+    );
 
     refs.categoriesList.innerHTML = createCategoriesMarkup(data.results);
     refs.pagination.innerHTML = createPaginationMarkup(
@@ -175,6 +190,20 @@ function onSearchSubmit(event) {
   event.preventDefault();
 
   state.keyword = event.currentTarget.elements.search.value.trim();
+  state.page = 1;
+
+  loadExercises();
+}
+
+function onSearchInput() {
+  refs.searchClear.classList.toggle('is-visible', refs.searchInput.value.length > 0);
+}
+
+function onSearchClear() {
+  refs.searchInput.value = '';
+  refs.searchClear.classList.remove('is-visible');
+
+  state.keyword = '';
   state.page = 1;
 
   loadExercises();

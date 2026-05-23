@@ -1,0 +1,105 @@
+<div class="backdrop is-hidden" data-modal-rating>
+  <div class="modal rating-modal">
+    <button type="button" class="close-btn rating-close" data-rating-close>
+      <svg class="modal-close-icon" aria-hidden="true">
+        <use href="../img/sprite.svg#icon-x"></use>
+      </svg>
+    </button>
+    <form class="rating-form" autocomplete="off" novalidate>
+      <div class="rating-selection">
+        <p class="rating-label">Rating</p>
+
+        <div class="stars-radio-group">
+          <input
+            type="radio"
+            id="star5"
+            name="rating"
+            value="5"
+            class="visually-hidden"
+            required
+          />
+          <label for="star5" class="star-label" aria-label="5 stars">
+            <svg class="star-icon">
+              <use href="./img/sprite.svg#icon-add-rating-star"></use>
+            </svg>
+          </label>
+
+          <input
+            type="radio"
+            id="star4"
+            name="rating"
+            value="4"
+            class="visually-hidden"
+          />
+          <label for="star4" class="star-label" aria-label="4 stars">
+            <svg class="star-icon">
+              <use href="./img/sprite.svg#icon-add-rating-star"></use>
+            </svg>
+          </label>
+
+          <input
+            type="radio"
+            id="star3"
+            name="rating"
+            value="3"
+            class="visually-hidden"
+          />
+          <label for="star3" class="star-label" aria-label="3 stars">
+            <svg class="star-icon">
+              <use href="./img/sprite.svg#icon-add-rating-star"></use>
+            </svg>
+          </label>
+
+          <input
+            type="radio"
+            id="star2"
+            name="rating"
+            value="2"
+            class="visually-hidden"
+          />
+          <label for="star2" class="star-label" aria-label="2 stars">
+            <svg class="star-icon">
+              <use href="./img/sprite.svg#icon-add-rating-star"></use>
+            </svg>
+          </label>
+
+          <input
+            type="radio"
+            id="star1"
+            name="rating"
+            value="1"
+            class="visually-hidden"
+          />
+          <label for="star1" class="star-label" aria-label="1 star">
+            <svg class="star-icon">
+              <use href="./img/sprite.svg#icon-add-rating-star"></use>
+            </svg>
+          </label>
+
+          <span class="live-rating-value">0.0</span>
+        </div>
+      </div>
+
+      <div class="rating-inputs-container">
+        <input
+          type="email"
+          name="email"
+          class="rating-input-field"
+          placeholder="Email"
+          required
+        />
+
+        <textarea
+          name="comment"
+          class="rating-textarea-field"
+          placeholder="Your comment"
+          required
+        ></textarea>
+      </div>
+
+      <button type="submit" class="modal-btn rating-submit-btn" data-submit-rating>Send</button>
+    </form>
+
+    <form class="feedback-form-element"></form>
+  </div>
+</div>

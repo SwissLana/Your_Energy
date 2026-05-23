@@ -50,7 +50,7 @@
 
 .hero-tag {
   flex-grow: 1;
-  padding: 4px 14px;
+  padding: 4px 11px;
   text-align: center;
 
   border: 1px solid var(--color-primary);
