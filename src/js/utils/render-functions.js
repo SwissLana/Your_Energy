@@ -49,10 +49,12 @@ export function createExerciseCardMarkup(exercise, options = {}) {
         const formattedRating = Number(rating).toFixed(1);
         return `
         <span class="exercise-card-rating">
-          <span class="rating-value">${formattedRating}</span>
-          <svg class="star-icon" width="14" height="14" aria-hidden="true" focusable="false">
-            <use href="./img/sprite.svg#icon-card-rating-star"></use>
-          </svg>
+          <span class="exercise-card-rating-value">${formattedRating}</span>
+          <span class="exercise-card-star-frame">
+            <svg class="exercise-card-star-icon" width="14" height="14" aria-hidden="true" focusable="false">
+              <use href="./img/sprite.svg#icon-card-rating-star"></use>
+            </svg>
+          </span>
         </span>
       `;
       })();
@@ -81,7 +83,7 @@ export function createExerciseCardMarkup(exercise, options = {}) {
 
       <div class="exercise-card-title-container">
         <div class="run-icon-wrapper">
-          <svg class="run-icon" width="24" height="24" aria-hidden="true" focusable="false">
+          <svg class="run-icon" width="14" height="14" aria-hidden="true" focusable="false">
             <use href="./img/sprite.svg#icon-running-figure"></use>
           </svg>
         </div>
@@ -89,9 +91,18 @@ export function createExerciseCardMarkup(exercise, options = {}) {
       </div>
 
       <ul class="exercise-card-info">
-        <li class="info-item">Burned calories: <span class="info-value">${burnedCalories} / 3 min</span></li>
-        <li class="info-item">Body part: <span class="info-value">${bodyPart}</span></li>
-        <li class="info-item">Target: <span class="info-value">${target}</span></li>
+        <li class="info-item" title="Burned calories: ${burnedCalories} / 3 min">
+          <span class="info-label">Burned calories:&nbsp;</span>
+          <span class="info-value">${burnedCalories} / 3 min</span>
+        </li>
+        <li class="info-item" title="Body part: ${bodyPart}">
+          <span class="info-label">Body part:&nbsp;</span>
+          <span class="info-value">${bodyPart}</span>
+        </li>
+        <li class="info-item" title="Target: ${target}">
+          <span class="info-label">Target:&nbsp;</span>
+          <span class="info-value">${target}</span>
+        </li>
       </ul>
     </li>
   `;

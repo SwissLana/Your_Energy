@@ -8,5 +8,3 @@ export const FILTERS = {
 
 export const FAVORITES_KEY = 'your-energy-favorites';
 export const QUOTE_KEY = 'your-energy-quote';
-
-export const EXERCISES_PER_PAGE = 10;

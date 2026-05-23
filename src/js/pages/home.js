@@ -1,8 +1,6 @@
 import { fetchFilters, fetchExercises } from '../api/exercises-api';
-import {
-  FILTERS,
-  EXERCISES_PER_PAGE,
-} from '../utils/constants';
+import { FILTERS } from '../utils/constants';
+import { getExercisesLimit } from '../utils/helpers';
 import {
   createCategoriesMarkup,
   createExercisesMarkup,
@@ -98,7 +96,7 @@ async function loadExercises() {
 
     const params = {
       page: state.page,
-      limit: EXERCISES_PER_PAGE,
+      limit: getExercisesLimit(),
     };
 
     if (state.keyword) {
