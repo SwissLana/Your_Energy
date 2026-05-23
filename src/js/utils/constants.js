@@ -10,4 +10,3 @@ export const FAVORITES_KEY = 'your-energy-favorites';
 export const QUOTE_KEY = 'your-energy-quote';
 
 export const EXERCISES_PER_PAGE = 10;
-export const FILTERS_PER_PAGE = 12;

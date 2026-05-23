@@ -1,7 +1,6 @@
 import { fetchFilters, fetchExercises } from '../api/exercises-api';
 import {
   FILTERS,
-  FILTERS_PER_PAGE,
   EXERCISES_PER_PAGE,
 } from '../utils/constants';
 import {
@@ -37,6 +36,11 @@ const state = {
   mode: 'categories',
 };
 
+function getFiltersLimit() {
+  if (window.innerWidth < 768) return 9; // mobile
+  return 12;                             // tablet + desktop
+}
+
 initHeader();
 initQuote();
 initSubscription();
@@ -60,7 +64,11 @@ async function loadCategories() {
     refs.selectedCategory.textContent = '';
     refs.exercisesList.innerHTML = '';
 
-    const data = await fetchFilters(state.filter, state.page, FILTERS_PER_PAGE);
+    const data = await fetchFilters(
+      state.filter,
+      state.page,
+      getFiltersLimit()
+    );
 
     refs.categoriesList.innerHTML = createCategoriesMarkup(data.results);
     refs.pagination.innerHTML = createPaginationMarkup(
