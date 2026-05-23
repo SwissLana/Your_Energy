@@ -2,6 +2,7 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import sprite from '../../img/sprite.svg';
 import { fetchExerciseById } from '../api/exercises-api';
+import { createExerciseModalMarkup } from '../utils/render-functions';
 import { openRatingModal } from './rating-modal';
 import { addFavorite, removeFavorite, isFavorite } from '../utils/storage';
 
@@ -43,6 +44,8 @@ export function openExerciseModal(exercise) {
     return;
   }
 
+  favorite = isFavorite(exercise._id);
+
   // generate mark up if it is first opening
   modalRoot.innerHTML = createExerciseModalMarkup(exercise);
 
@@ -55,9 +58,9 @@ export function openExerciseModal(exercise) {
   // add event listeners to buttons
   favoriteBtn = modalRoot.querySelector('[data-favorite-toggle]');
   if (favoriteBtn) favoriteBtn.addEventListener('click', onClickToggleFavorite);
-  
-  ratingBtn = modalRoot.querySelector('[data-give-rating]')
-  if (ratingBtn) ratingBtn.addEventListener('click', onClickOpenRatingModal)
+
+  ratingBtn = modalRoot.querySelector('[data-give-rating]');
+  if (ratingBtn) ratingBtn.addEventListener('click', onClickOpenRatingModal);
 }
 
 function onClickOpenRatingModal() {
@@ -66,147 +69,7 @@ function onClickOpenRatingModal() {
     backdropExercise.classList.add('is-hidden');
   }
 
-  openRatingModal(currentExercise);  
-}
-
-function createExerciseModalMarkup(exercise) {
-  favorite = isFavorite(exercise._id);
-
-  const starsMarkup = createRatingStarsMarkup(exercise.rating);
-
-  // dynamically change button functionality display
-  const btnText = favorite ? 'Remove from favorites' : 'Add to favorites';
-  const btnIconId = favorite ? 'icon-trash' : 'icon-heart';
-
-  return `
-    <div class="backdrop" data-modal-backdrop>
-      <div class="modal exercise-modal" role="dialog" aria-modal="true">
-        <button
-          class="close-btn exercise-close"
-          type="button"
-          data-modal-close
-          aria-label="Close modal"
-        >
-          <svg class="modal-close-icon" aria-hidden="true">
-            <use href="${sprite}#icon-x"></use>
-          </svg>
-        </button>
-        <div class="modal-content">
-          <div class="exercise-modal-media">
-            ${
-              exercise.gifUrl
-                ? `<img src="${exercise.gifUrl}" alt="${exercise.name}" loading="lazy" />`
-                : '<p>Video is not available.</p>'
-            }
-          </div>
-          <div class="exercise-description">
-            <div class="exercise-heading">
-              <h2 class="exercise-modal-title">${exercise.name}</h2>
-              <div class="exercise-rating-container">
-                <span class="rating-value">${exercise.rating ? Number(exercise.rating).toFixed(1) : '0.0'}</span>
-                <div class="rating-stars">
-                  ${starsMarkup}
-                </div>
-              </div>
-            </div>
-            <ul class="exercise-modal-info">
-              <li class="info-item">
-                <p class="info-label">Target</p>
-                <span class="info-value">${exercise.target}</span>
-              </li>
-
-              <li class="info-item">
-                <p class="info-label">Body Part</p>
-                <span class="info-value">${exercise.bodyPart}</span>
-              </li>
-              
-              <li class="info-item">
-                <p class="info-label">Equipment</p>
-                <span class="info-value">${exercise.equipment}</span>
-              </li>
-              
-              <li class="info-item">
-                <p class="info-label">Popular</p>
-                <span class="info-value">${exercise.popularity}</span>
-              </li>
-
-              <li class="info-item">
-                <p class="info-label">Burned Calories</p>
-                <span class="info-value">${exercise.burnedCalories} / ${exercise.time} min</span></li>
-            </ul>
-
-            <p class="exercise-modal-description">
-              ${exercise.description || 'Description is not available.'}
-            </p>
-
-            <div class="btn-wrapper">
-              <button
-                class="modal-btn favorite-modal-btn"
-                type="button"
-                data-favorite-toggle
-              >
-                <span>${btnText}</span>
-                <svg class="modal-btn-icon" width="18" height="18" aria-hidden="true">
-                  <use href="${sprite}#${btnIconId}"></use>
-                </svg>
-              </button>
-              <button
-                class="modal-btn give-rating-btn"
-                type="button"
-                data-give-rating
-              >
-                Give a rating
-              </button>
-            </div>
-          </div>          
-        </div>           
-      </div>
-    </div>
-  `;
-}
-
-function createRatingStarsMarkup(rating) {
-  const maxStars = 5;
-  // round up rating to whole number
-  const currentRating = Number(rating || 0);
-
-  let starsMarkup = '';
-
-  // calculate coloring percentage for the star
-  const fillPercentage = Math.round((currentRating % 1) * 100);
-
-  // create dynamic gradient
-  starsMarkup += `
-    <svg width="0" height="0" style="position:absolute;">
-      <defs>
-        <linearGradient id="partial-star-gradient">
-          <stop offset="${fillPercentage}%" stop-color="#eea111" /> <stop offset="${fillPercentage}%" stop-color="#e0e0e0" /> </linearGradient>
-      </defs>
-    </svg>
-  `;
-
-  for (let i = 1; i <= maxStars; i++) {
-    let starFill;
-
-    if (i <= Math.floor(currentRating)) {
-      // if star less or equal whole part of rating, it is colored orange
-      starFill = 'rgb(238, 161, 12)';
-    } else if (i === Math.ceil(currentRating) && currentRating % 1 !== 0) {
-      // if this is next star and there is a part, apply gradient based on id
-      starFill = 'url(#partial-star-gradient)';
-    } else {
-      // all other stars are gray
-      starFill = 'rgba(244, 244, 244, 0.2)';
-    }
-
-    starsMarkup += `
-      <svg width="18" height="18" aria-hidden="true" style="fill: ${starFill};">
-        <use href="${sprite}#icon-add-rating-star"></use>
-      </svg>
-    `;
-  }
-
-  return starsMarkup;
+  openRatingModal(currentExercise);
 }
 
 // close modal by click on backdrop or close button
@@ -236,6 +99,9 @@ function onClickToggleFavorite() {
     textSpan.textContent = 'Remove from favorites';
     svgUse.setAttribute('href', `${sprite}#icon-trash`);
   }
+
+  // inform favorites page that favorites list changed
+  document.dispatchEvent(new CustomEvent('favoritesUpdated'));
 }
 
 function onEscPress(event) {
@@ -247,9 +113,9 @@ function onEscPress(event) {
   if (ratingModal && !ratingModal.classList.contains('is-hidden')) {
     const ratingForm = document.querySelector('.rating-form');
     if (ratingForm) ratingForm.reset();
-    
+
     ratingModal.classList.add('is-hidden');
-    
+
     if (backdropExercise) backdropExercise.classList.remove('is-hidden');
     return;
   }
@@ -270,7 +136,7 @@ export function closeModal() {
   }
 
   if (ratingBtn) {
-    ratingBtn.removeEventListener('click', onClickOpenRatingModal)
+    ratingBtn.removeEventListener('click', onClickOpenRatingModal);
     ratingBtn = null;
   }
 

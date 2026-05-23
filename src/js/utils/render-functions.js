@@ -1,3 +1,6 @@
+import sprite from '../../img/sprite.svg';
+import {isFavorite } from './storage';
+
 export function createCategoryCardMarkup({ name, filter, imgURL }) {
   return `
     <li class="category-card" data-name="${name}" data-filter="${filter}">
@@ -21,13 +24,13 @@ export function createCategoriesMarkup(categories) {
   return categories.map(createCategoryCardMarkup).join('');
 }
 
-// 1. Основна функція для генерації однієї картки (універсальна)
+// universal function to generate one card
 export function createExerciseCardMarkup(exercise, options = {}) {
   const isFavorite =
     typeof options === 'boolean' ? options : (options?.isFavorite ?? false);
   const { _id, name, rating, burnedCalories, bodyPart, target } = exercise;
 
-  // Перевіряємо статус: для "обраного" рендеримо кошик, для звичайного — рейтинг
+  // check exercise status: for favorite render trash icon, for regular card render rating
   const topBadgeAction = isFavorite
     ? `
         <button
@@ -42,7 +45,7 @@ export function createExerciseCardMarkup(exercise, options = {}) {
         </button>
       `
     : (() => {
-        // Оптимізація: рейтинг обчислюється тільки для звичайних карток
+        // provide rating only for regular cards
         const formattedRating = Number(rating).toFixed(1);
         return `
         <span class="exercise-card-rating">
@@ -94,7 +97,7 @@ export function createExerciseCardMarkup(exercise, options = {}) {
   `;
 }
 
-// 2. Генерація списку звичайних карток
+// generate regular cards list
 export function createExercisesMarkup(exercises) {
   return exercises
     .map(exercise => createExerciseCardMarkup(exercise, false))
@@ -173,7 +176,149 @@ export function createFavoriteCardMarkup(exercise) {
   `;
 }
 
-// 4. Генерація списку обраних карток
+// generate list of cards with favorite exercises
 export function createFavoriteExercisesMarkup(exercises) {
   return exercises.map(createFavoriteCardMarkup).join('');
+}
+
+//-----------EXERCISE MODAL WINDOW RENDER----------------
+
+export function createExerciseModalMarkup(exercise) {
+  const favorite = isFavorite(exercise._id);
+
+  const starsMarkup = createRatingStarsMarkup(exercise.rating);
+
+  // dynamically change button functionality display
+  const btnText = favorite ? 'Remove from favorites' : 'Add to favorites';
+  const btnIconId = favorite ? 'icon-trash' : 'icon-heart';
+
+  return `
+    <div class="backdrop" data-modal-backdrop>
+      <div class="modal exercise-modal" role="dialog" aria-modal="true">
+        <button
+          class="close-btn exercise-close"
+          type="button"
+          data-modal-close
+          aria-label="Close modal"
+        >
+          <svg class="modal-close-icon" aria-hidden="true">
+            <use href="${sprite}#icon-x"></use>
+          </svg>
+        </button>
+        <div class="modal-content">
+          <div class="exercise-modal-media">
+            ${
+              exercise.gifUrl
+                ? `<img src="${exercise.gifUrl}" alt="${exercise.name}" loading="lazy" />`
+                : '<p>Video is not available.</p>'
+            }
+          </div>
+          <div class="exercise-description">
+            <div class="exercise-heading">
+              <h2 class="exercise-modal-title">${exercise.name}</h2>
+              <div class="exercise-rating-container">
+                <span class="rating-value">${exercise.rating ? Number(exercise.rating).toFixed(1) : '0.0'}</span>
+                <div class="rating-stars">
+                  ${starsMarkup}
+                </div>
+              </div>
+            </div>
+            <ul class="exercise-modal-info">
+              <li class="info-item">
+                <p class="info-label">Target</p>
+                <span class="info-value">${exercise.target}</span>
+              </li>
+
+              <li class="info-item">
+                <p class="info-label">Body Part</p>
+                <span class="info-value">${exercise.bodyPart}</span>
+              </li>
+              
+              <li class="info-item">
+                <p class="info-label">Equipment</p>
+                <span class="info-value">${exercise.equipment}</span>
+              </li>
+              
+              <li class="info-item">
+                <p class="info-label">Popular</p>
+                <span class="info-value">${exercise.popularity}</span>
+              </li>
+
+              <li class="info-item">
+                <p class="info-label">Burned Calories</p>
+                <span class="info-value">${exercise.burnedCalories} / ${exercise.time} min</span></li>
+            </ul>
+
+            <p class="exercise-modal-description">
+              ${exercise.description || 'Description is not available.'}
+            </p>
+
+            <div class="btn-wrapper">
+              <button
+                class="modal-btn favorite-modal-btn"
+                type="button"
+                data-favorite-toggle
+              >
+                <span>${btnText}</span>
+                <svg class="modal-btn-icon" width="18" height="18" aria-hidden="true">
+                  <use href="${sprite}#${btnIconId}"></use>
+                </svg>
+              </button>
+              <button
+                class="modal-btn give-rating-btn"
+                type="button"
+                data-give-rating
+              >
+                Give a rating
+              </button>
+            </div>
+          </div>          
+        </div>           
+      </div>
+    </div>
+  `;
+}
+
+export function createRatingStarsMarkup(rating) {
+  const maxStars = 5;
+  
+  const currentRating = Number(rating || 0);
+
+  let starsMarkup = '';
+
+  // calculate coloring percentage for the star
+  const fillPercentage = Math.round((currentRating % 1) * 100);
+
+  // create dynamic gradient
+  starsMarkup += `
+    <svg width="0" height="0" style="position:absolute;">
+      <defs>
+        <linearGradient id="partial-star-gradient">
+          <stop offset="${fillPercentage}%" stop-color="rgb(238, 161, 12)" /> <stop offset="${fillPercentage}%" stop-color="rgba(244, 244, 244, 0.2)" /> </linearGradient>
+      </defs>
+    </svg>
+  `;
+
+  for (let i = 1; i <= maxStars; i++) {
+    let starFill;
+
+    if (i <= Math.floor(currentRating)) {
+      // if star less or equal whole part of rating, it is colored orange
+      starFill = 'rgb(238, 161, 12)';
+    } else if (i === Math.ceil(currentRating) && currentRating % 1 !== 0) {
+      // if this is next star and there is a part, apply gradient based on id
+      starFill = 'url(#partial-star-gradient)';
+    } else {
+      // all other stars are gray
+      starFill = 'rgba(244, 244, 244, 0.2)';
+    }
+
+    starsMarkup += `
+      <svg width="18" height="18" aria-hidden="true" style="fill: ${starFill};">
+        <use href="${sprite}#icon-add-rating-star"></use>
+      </svg>
+    `;
+  }
+
+  return starsMarkup;
 }

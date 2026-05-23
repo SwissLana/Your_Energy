@@ -75,3 +75,7 @@ function onRemoveFavoriteClick(event) {
     refs.emptyMessage.classList.remove('is-hidden');
   }
 }
+
+
+// listen to modal to evoke favorite cards list rerender when toggle add/remove favorites button
+document.addEventListener('favoritesUpdated', renderFavorites);
