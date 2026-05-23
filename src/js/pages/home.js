@@ -54,6 +54,7 @@ refs.filters.addEventListener('click', onFilterClick);
 refs.categoriesList.addEventListener('click', onCategoryClick);
 refs.pagination.addEventListener('click', onPaginationClick);
 refs.searchForm.addEventListener('submit', onSearchSubmit);
+refs.searchForm.addEventListener('reset', () => refs.searchClear.classList.remove('is-visible'));
 refs.searchInput.addEventListener('input', onSearchInput);
 refs.searchClear.addEventListener('click', onSearchClear);
 

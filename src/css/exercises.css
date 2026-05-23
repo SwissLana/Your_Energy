@@ -69,12 +69,14 @@
   right: 40px;
   opacity: 0;
   pointer-events: none;
-  transition: opacity var(--transition);
+  visibility: hidden;
+  transition: opacity var(--transition), visibility var(--transition);
 }
 
 .close-icon-btn.is-visible {
   opacity: 1;
   pointer-events: auto;
+  visibility: visible;
 }
 
 .close-icon-btn path {
