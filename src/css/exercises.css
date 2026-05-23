@@ -215,12 +215,22 @@
   color: var(--color-primary);
 }
 
-.exercise-card-star-icon {
-  display: block;
+.exercise-card-star-frame {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   flex-shrink: 0;
 
   width: 18px;
   height: 18px;
+}
+
+.exercise-card-star-icon {
+  display: block;
+
+  width: 12px;
+  height: 12px;
   fill: #eea10c;
   color: #eea10c;
 }

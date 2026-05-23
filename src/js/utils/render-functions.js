@@ -50,9 +50,11 @@ export function createExerciseCardMarkup(exercise, options = {}) {
         return `
         <span class="exercise-card-rating">
           <span class="exercise-card-rating-value">${formattedRating}</span>
-          <svg class="exercise-card-star-icon" width="18" height="18" aria-hidden="true" focusable="false">
-            <use href="./img/sprite.svg#icon-card-rating-star"></use>
-          </svg>
+          <span class="exercise-card-star-frame">
+            <svg class="exercise-card-star-icon" width="14" height="14" aria-hidden="true" focusable="false">
+              <use href="./img/sprite.svg#icon-card-rating-star"></use>
+            </svg>
+          </span>
         </span>
       `;
       })();
