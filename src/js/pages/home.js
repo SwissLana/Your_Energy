@@ -25,6 +25,8 @@ const refs = {
   exercisesList: document.querySelector('[data-exercises-list]'),
   pagination: document.querySelector('[data-pagination]'),
   searchForm: document.querySelector('[data-search-form]'),
+  searchInput: document.querySelector('[data-search-form] input'),
+  searchClear: document.querySelector('[data-search-clear]'),
   selectedCategory: document.querySelector('[data-selected-category]'),
 };
 
@@ -52,6 +54,8 @@ refs.filters.addEventListener('click', onFilterClick);
 refs.categoriesList.addEventListener('click', onCategoryClick);
 refs.pagination.addEventListener('click', onPaginationClick);
 refs.searchForm.addEventListener('submit', onSearchSubmit);
+refs.searchInput.addEventListener('input', onSearchInput);
+refs.searchClear.addEventListener('click', onSearchClear);
 
 loadCategories();
 
@@ -185,6 +189,20 @@ function onSearchSubmit(event) {
   event.preventDefault();
 
   state.keyword = event.currentTarget.elements.search.value.trim();
+  state.page = 1;
+
+  loadExercises();
+}
+
+function onSearchInput() {
+  refs.searchClear.classList.toggle('is-visible', refs.searchInput.value.length > 0);
+}
+
+function onSearchClear() {
+  refs.searchInput.value = '';
+  refs.searchClear.classList.remove('is-visible');
+
+  state.keyword = '';
   state.page = 1;
 
   loadExercises();

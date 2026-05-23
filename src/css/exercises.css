@@ -7,7 +7,13 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 32px;
+}
+
+.exercises-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .exercises-title {
@@ -34,46 +40,101 @@
   gap: 12px;
 }
 
+.search-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.search-icon-btn,
+.close-icon-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  display: flex;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--color-primary);
+  cursor: pointer;
+
+  height: auto;
+}
+
+.search-icon-btn {
+  right: 14px;
+}
+
+.close-icon-btn {
+  right: 40px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition);
+}
+
+.close-icon-btn.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.close-icon-btn path {
+  stroke: currentColor;
+}
+
 .search-form input {
   width: 100%;
-  max-width: 320px;
+  max-width: none;
   height: 44px;
-  padding: 0 16px;
+  padding: 0 66px 0 16px;
 
-  border: 1px solid var(--color-border);
+  border: 1px solid var(--color-primary);
   border-radius: 30px;
 
   background-color: transparent;
 }
 
-.search-form button {
-  height: 44px;
-  padding: 0 20px;
-
-  border: none;
-  border-radius: 30px;
-
-  color: var(--color-white);
-  background-color: var(--color-primary);
+.search-form input:focus {
+  outline: none;
+  box-shadow: 0 0 0 1px var(--color-primary);
 }
+
 
 .filters {
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
+  flex-wrap: wrap;
   gap: 20px;
-  margin-bottom: 20px;
 }
 
 .filters button {
   position: relative;
-  padding: 0 0 4px;
+  padding: 0;
+
   border: none;
-  border-radius: 0;
-  font-size: 14px;
-  line-height: 1.43;
+
   background: transparent;
   color: var(--color-primary-light);
+  font-size: 14px;
+  line-height: 1.43;
+
+  cursor: pointer;
+  transition: color var(--transition);
+}
+
+.filters button:hover:not(.is-active) {
+  color: var(--color-primary);
+}
+
+.filters button::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: var(--color-primary);
+  border-radius: 2px;
+  transform: scaleX(0);
+  transition: transform var(--transition);
 }
 
 .filters button.is-active {
@@ -81,15 +142,7 @@
 }
 
 .filters button.is-active::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0;
-  width: 100%;
-  height: 4px;
-  border-radius: 2px;
-  background-color: var(--color-primary);
+  transform: scaleX(1);
 }
 
 /* CATEGORY CARDS */
@@ -295,11 +348,11 @@
 }
 
 .info-item {
-  color: rgba(36, 36, 36, 0.4);
+  color: var(--color-primary-extra-light);
 
   font-weight: 400;
   font-size: 12px;
-  line-height: 150%;
+  line-height: 1.5;
 
   white-space: nowrap;
 }
@@ -327,7 +380,8 @@
   margin-left: 16px;
 }
 
-.pagination-btn:not(.is-active):not(.pagination-btn--nav) + .pagination-btn--nav,
+.pagination-btn:not(.is-active):not(.pagination-btn--nav)
+  + .pagination-btn--nav,
 .pagination-ellipsis + .pagination-btn--nav {
   margin-left: 16px;
 }
@@ -401,11 +455,15 @@
 /* TABLET */
 
 @media screen and (min-width: 768px) {
-  .exercises-top {
+  .exercises-controls {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 32px;
+  }
+
+  .search-form {
+    max-width: 273px;
+    width: 100%;
   }
 
   [data-categories-list] {
@@ -429,11 +487,6 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .filters {
-    justify-content: flex-start;
-    margin-bottom: 32px;
-  }
-
   .filters button {
     font-size: 16px;
     line-height: 1.5;
@@ -443,26 +496,30 @@
 /* DESKTOP */
 
 @media screen and (min-width: 1440px) {
-  .exercises-top {
-    margin-bottom: 32px;
-  }
-
   .exercises-title {
     font-size: 44px;
     line-height: 1.09;
   }
 
+  .exercises-top {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .exercises-controls {
+    flex: 1;
+    justify-content: flex-end;
+    max-width: 600px;
+  }
+
+  .filters {
+    flex-wrap: nowrap;
+  }
+
   .selected-category {
     font-size: 24px;
     line-height: 1.33;
-  }
-
-  [data-categories-list] {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .category-card-title {
-    font-size: 24px;
   }
 
   .category-card-img {
