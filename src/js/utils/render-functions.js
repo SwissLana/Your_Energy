@@ -52,7 +52,7 @@ export function createExerciseCardMarkup(exercise, options = {}) {
           <span class="exercise-card-rating-value">${formattedRating}</span>
           <span class="exercise-card-star-frame">
             <svg class="exercise-card-star-icon" width="14" height="14" aria-hidden="true" focusable="false">
-              <use href="./img/sprite.svg#icon-card-rating-star"></use>
+              <use href="${sprite}#icon-card-rating-star"></use>
             </svg>
           </span>
         </span>
@@ -76,7 +76,7 @@ export function createExerciseCardMarkup(exercise, options = {}) {
         >
           Start
           <svg class="arrow-icon" width="16" height="16" aria-hidden="true" focusable="false">
-            <use href="./img/sprite.svg#icon-arrow-right"></use>
+            <use href="${sprite}#icon-arrow-right"></use>
           </svg>
         </button>
       </div>
@@ -84,7 +84,7 @@ export function createExerciseCardMarkup(exercise, options = {}) {
       <div class="exercise-card-title-container">
         <div class="run-icon-wrapper">
           <svg class="run-icon" width="14" height="14" aria-hidden="true" focusable="false">
-            <use href="./img/sprite.svg#icon-running-figure"></use>
+            <use href="${sprite}#icon-running-figure"></use>
           </svg>
         </div>
         <h3 class="exercise-card-title">${name}</h3>
@@ -155,7 +155,7 @@ export function createFavoriteCardMarkup(exercise) {
         >
           Start
           <svg class="favorite-card-arrow-icon" width="16" height="16">
-            <use href="./img/sprite.svg#icon-arrow-right"></use>
+            <use href="${sprite}#icon-arrow-right"></use>
           </svg>
         </button>
       </div>
@@ -163,7 +163,7 @@ export function createFavoriteCardMarkup(exercise) {
       <div class="favorite-card-heading">
         <div class="favorite-card-icon-wrap">
           <svg class="favorite-card-icon" width="14" height="14">
-            <use href="./img/sprite.svg#icon-running-figure"></use>
+            <use href="${sprite}#icon-running-figure"></use>
           </svg>
         </div>
         <h3 class="favorite-card-title">${name}</h3>
@@ -235,27 +235,27 @@ export function createExerciseModalMarkup(exercise) {
               </div>
             </div>
             <ul class="exercise-modal-info">
-              <li class="info-item">
+              <li class="exercise-modal-info-item">
                 <p class="info-label">Target</p>
                 <span class="info-value">${exercise.target}</span>
               </li>
 
-              <li class="info-item">
+              <li class="exercise-modal-info-item">
                 <p class="info-label">Body Part</p>
                 <span class="info-value">${exercise.bodyPart}</span>
               </li>
               
-              <li class="info-item">
+              <li class="exercise-modal-info-item">
                 <p class="info-label">Equipment</p>
                 <span class="info-value">${exercise.equipment}</span>
               </li>
               
-              <li class="info-item">
+              <li class="exercise-modal-info-item">
                 <p class="info-label">Popular</p>
                 <span class="info-value">${exercise.popularity}</span>
               </li>
 
-              <li class="info-item">
+              <li class="exercise-modal-info-item">
                 <p class="info-label">Burned Calories</p>
                 <span class="info-value">${exercise.burnedCalories} / ${exercise.time} min</span></li>
             </ul>
