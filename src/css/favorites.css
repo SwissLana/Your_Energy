@@ -4,12 +4,13 @@
 }
 
 .favorites-title {
-  margin-bottom: 32px;
+  margin-bottom: 20px;
 
-  font-size: 32px;
-  font-weight: 700;
-  line-height: 1.1;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.36;
   letter-spacing: -0.02em;
+  color: var(--color-primary);
 }
 
 .favorites-content {
@@ -21,6 +22,14 @@
  @media screen and (min-width: 768px) {
   .favorites-content {
     gap: 64px;
+  }
+
+  .favorites-title {
+    margin-bottom: 32px;
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
   }
 }
 
@@ -43,10 +52,11 @@
 
 .favorites-empty {
   max-width: 320px;
-  margin: 80px auto;
+  margin: 0 0 46px;
   text-align: center;
   color: var(--color-primary-light);
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.29;
 }
 
 .favorite-card {
@@ -169,12 +179,12 @@
   width: 24px;
   height: 24px;
 
-  background-color: #242424;
+  background-color: var(--color-primary);
   border-radius: 50%;
 }
 
 .favorite-card-icon {
-  color: #ffffff;
+  color: var(--color-white);
 }
 
 .favorite-card-title {
@@ -259,6 +269,9 @@
 
   .favorites-empty {
     max-width: 560px;
+    font-size: 18px;
+    line-height: 1.33;
+    margin: 100px auto;
   }
 
   .favorite-card-heading {
@@ -279,15 +292,15 @@
     column-gap: 16px;
   }
 }
-.favorites-layout {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 40px;
-}
+  .favorites-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
 
 @media screen and (min-width: 768px) {
   .favorites-layout {
-    gap: 64px;
+    gap: 20px;
   }
 }
 
