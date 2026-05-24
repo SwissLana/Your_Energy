@@ -2,6 +2,7 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 import { subscribe } from '../api/exercises-api';
+import { getCurrentYear } from '../utils/helpers';
 
 export function initSubscription() {
   const form = document.querySelector('[data-subscription-form]');
@@ -21,7 +22,7 @@ async function onSubscriptionSubmit(event) {
 
   try {
     button.disabled = true;
-    
+
     await subscribe(email);
 
     iziToast.success({
@@ -31,13 +32,17 @@ async function onSubscriptionSubmit(event) {
 
     form.reset();
   } catch (error) {
-  
     iziToast.error({
       message: error.response?.data?.message || 'Subscription failed.',
       position: 'topRight',
     });
-    
   } finally {
     button.disabled = false;
   }
+}
+
+const currentYearEl = document.querySelector('[data-current-year]');
+
+if (currentYearEl) {
+  currentYearEl.textContent = getCurrentYear();
 }
