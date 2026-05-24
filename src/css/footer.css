@@ -35,11 +35,6 @@
   filter: brightness(0) invert(1);
 }
 
-.footer-logo:hover,
-.footer-logo:focus {
-  transform: scale(1.1);
-}
-
 .footer-social-list {
   display: flex;
   gap: 12px;

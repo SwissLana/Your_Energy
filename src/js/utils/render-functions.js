@@ -40,7 +40,7 @@ export function createExerciseCardMarkup(exercise, options = {}) {
           aria-label="Remove exercise from favorites"
         >
           <svg class="trash-icon" width="16" height="16" aria-hidden="true" focusable="false">
-            <use href="./img/sprite.svg#icon-trash"></use>
+            <use href="${sprite}#icon-trash"></use>
           </svg>
         </button>
       `
@@ -141,7 +141,7 @@ export function createFavoriteCardMarkup(exercise) {
             aria-label="Remove exercise from favorites"
           >
             <svg class="favorite-card-trash-icon" width="16" height="16">
-              <use href="./img/sprite.svg#icon-trash"></use>
+              <use href="${sprite}#icon-trash"></use>
             </svg>
           </button>
         </div>
