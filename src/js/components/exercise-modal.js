@@ -1,6 +1,7 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import sprite from '../../img/sprite.svg';
+import { showLoader, hideLoader } from '../utils/loader';
 import { fetchExerciseById } from '../api/exercises-api';
 import { createExerciseModalMarkup } from '../utils/render-functions';
 import { openRatingModal } from './rating-modal';
@@ -24,6 +25,8 @@ async function onExerciseStartClick(event) {
   if (!button) return;
 
   try {
+    showLoader();
+
     currentExercise = await fetchExerciseById(button.dataset.id);
     openExerciseModal(currentExercise);
   } catch (error) {
@@ -32,6 +35,8 @@ async function onExerciseStartClick(event) {
       message: 'Failed to load exercise details.',
       position: 'topCenter',
     });
+  } finally {
+    hideLoader();
   }
 }
 
