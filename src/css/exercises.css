@@ -509,8 +509,12 @@
 }
 
 .pagination-icon {
+  display:block;
   width: 20px;
   height: 20px;
+
+  fill: currentColor;
+  color: inherit;
   transition: transform var(--transition);
 }
 
