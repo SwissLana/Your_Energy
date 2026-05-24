@@ -7,11 +7,13 @@ export function renderQuoteCard(rootSelector) {
 
   if (!root || !template) return;
 
+  root.innerHTML = '';
   root.appendChild(template.content.cloneNode(true));
 }
 
 export async function initQuote() {
   renderQuoteCard('[data-quote-card-root]');
+
   const quoteText = document.querySelector('[data-quote-text]');
   const quoteAuthor = document.querySelector('[data-quote-author]');
 
