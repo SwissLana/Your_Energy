@@ -30,7 +30,12 @@ body.no-scroll {
 
 input {
   font-family: inherit;
-  outline: none;
+}
+
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 .is-hidden {
