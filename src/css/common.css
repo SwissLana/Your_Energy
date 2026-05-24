@@ -94,14 +94,14 @@
 /* Tablet + Desktop */
 @media screen and (min-width: 768px) {
   .scroll-up-btn {
-    width: 100px;
-    height: 100px;
-    right: 32px;
-    bottom: 32px;
+    width: 60px;
+    height: 60px;
+    right: 24px;
+    bottom: 24px;
   }
 
   .scroll-up-btn-icon {
-    width: 48px;
-    height: 48px;
+    width: 30px;
+    height: 30px;
   }
 }
