@@ -30,6 +30,7 @@ body.no-scroll {
 
 input {
   font-family: inherit;
+  outline: none;
 }
 
 .is-hidden {
