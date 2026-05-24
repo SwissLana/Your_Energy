@@ -70,7 +70,9 @@
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
-  transition: opacity var(--transition), visibility var(--transition);
+  transition:
+    opacity var(--transition),
+    visibility var(--transition);
 }
 
 .close-icon-btn.is-visible {
@@ -99,7 +101,6 @@
   outline: none;
   box-shadow: 0 0 0 1px var(--color-primary);
 }
-
 
 .filters {
   display: flex;
@@ -440,24 +441,15 @@
   margin-top: 32px;
 }
 
-.pagination-btn--nav + .pagination-btn:not(.pagination-btn--nav) {
-  margin-left: 16px;
-}
-
-.pagination-btn:not(.is-active):not(.pagination-btn--nav)
-  + .pagination-btn--nav,
-.pagination-ellipsis + .pagination-btn--nav {
-  margin-left: 16px;
-}
-
 .pagination-btn {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  min-width: 36px;
-  height: 36px;
-  padding: 0 8px;
+  box-sizing: border-box;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 6px;
 
   border: 1px solid transparent;
   border-radius: 100px;
@@ -482,6 +474,7 @@
 
 .pagination-btn.is-active {
   border-color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 .pagination-btn--nav {
@@ -499,6 +492,22 @@
   transform: scale(1.2);
 }
 
+.pagination-btn--nav + .pagination-btn:not(.pagination-btn--nav),
+.pagination-btn:not(.is-active):not(.pagination-btn--nav)
+  + .pagination-btn--nav,
+.pagination-btn--nav + .pagination-ellipsis,
+.pagination-ellipsis + .pagination-btn--nav {
+  margin-left: clamp(2px, 1vw, 16px);
+}
+
+.pagination-btn--double {
+  padding: 0;
+}
+
+.pagination-btn--double .pagination-icon + .pagination-icon {
+  margin-left: -12px;
+}
+
 .pagination-icon {
   width: 20px;
   height: 20px;
@@ -508,10 +517,8 @@
 .pagination-ellipsis {
   display: flex;
   align-items: center;
-  justify-content: center;
 
-  width: 36px;
-  height: 36px;
+  height: 32px;
 
   color: var(--color-primary-light);
 }
@@ -519,6 +526,28 @@
 /* TABLET */
 
 @media screen and (min-width: 768px) {
+  .pagination-btn--nav + .pagination-btn:not(.pagination-btn--nav),
+  .pagination-btn:not(.is-active):not(.pagination-btn--nav)
+    + .pagination-btn--nav,
+  .pagination-btn--nav + .pagination-ellipsis,
+  .pagination-ellipsis + .pagination-btn--nav {
+    margin-left: 16px;
+  }
+
+  .pagination-btn {
+    min-width: 36px;
+    height: 36px;
+    padding: 0 8px;
+  }
+
+  .pagination-btn--double {
+    padding: 0;
+  }
+
+  .pagination-ellipsis {
+    height: 36px;
+  }
+
   .exercises-controls {
     flex-direction: row;
     justify-content: space-between;
