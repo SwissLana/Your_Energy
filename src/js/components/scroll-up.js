@@ -4,7 +4,7 @@ export function initScrollUp() {
   if (!scrollUpBtn) return;
 
   window.addEventListener('scroll', () => {
-    scrollUpBtn.classList.toggle('is-visible', window.scrollY > 400);
+    scrollUpBtn.classList.toggle('is-visible', window.scrollY > 300);
   });
 
   scrollUpBtn.addEventListener('click', () => {
