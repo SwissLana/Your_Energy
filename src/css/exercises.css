@@ -369,6 +369,10 @@
   text-overflow: ellipsis;
 }
 
+.exercise-card-title::first-letter{
+  text-transform: capitalize;
+}
+
 .exercise-card-info {
   display: flex;
   flex-wrap: nowrap;
