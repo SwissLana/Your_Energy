@@ -182,6 +182,16 @@ function onPaginationClick(event) {
   } else {
     loadExercises();
   }
+
+  // when new page, scroll to the Exercise title
+  const exercisesTitle = document.querySelector('.exercises-title');
+  
+  if (exercisesTitle) {
+    exercisesTitle.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
 }
 
 function onSearchSubmit(event) {
