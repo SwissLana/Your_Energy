@@ -10,4 +10,5 @@ import './css/rating-modal.css'
 import './css/footer.css';
 
 import './js/pages/home';
-
+import { initScrollUp } from './js/components/scroll-up';
+initScrollUp();

@@ -17,14 +17,20 @@
   position: fixed;
   right: 20px;
   bottom: 20px;
-  z-index: 500;
+  z-index: 1000;
   width: 44px;
   height: 44px;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: none;
   border-radius: 50%;
-  color: var(--color-white);
+  color: var(--color-background);
+  cursor: pointer;
+  transform: translateY(20px);
   background-color: var(--color-primary);
   transition: opacity var(--transition), transform var(--transition);
 }
@@ -32,12 +38,21 @@
 .scroll-up-btn.is-visible,
 [data-scroll-up].is-visible {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
+  transform: translateY(0);
 }
 
 .scroll-up-btn:hover,
 [data-scroll-up]:hover {
   transform: translateY(-4px);
+  background-color: var(--color-primary);
+}
+
+.scroll-up-btn-icon {
+  width: 32px;
+  height: 32px;
+  fill: currentColor;
 }
 
 .visually-hidden {
@@ -52,4 +67,34 @@
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+
+/* Mobile */
+@media screen and (max-width: 767px) {
+  .scroll-up-btn {
+    width: 40px;
+    height: 40px;
+    right: 20px;
+    bottom: 20px;
+  }
+
+  .scroll-up-btn-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Tablet + Desktop */
+@media screen and (min-width: 768px) {
+  .scroll-up-btn {
+    width: 100px;
+    height: 100px;
+    right: 32px;
+    bottom: 32px;
+  }
+
+  .scroll-up-btn-icon {
+    width: 48px;
+    height: 48px;
+  }
 }
