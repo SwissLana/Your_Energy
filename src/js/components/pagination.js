@@ -1,5 +1,7 @@
+import sprite from '../../img/sprite.svg';
+
 const icon = id =>
-  `<svg class="pagination-icon" aria-hidden="true" focusable="false"><use href="./img/sprite.svg#${id}"></use></svg>`;
+  `<svg class="pagination-icon" aria-hidden="true" focusable="false"><use href="${sprite}#${id}"></use></svg>`;
 
 const doubleIcon = id => `${icon(id)}${icon(id)}`;
 
