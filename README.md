@@ -339,7 +339,7 @@ Used for:
 
 ---
 
-## ⚡ Performance Optimizations
+## Performance Optimizations
 
 Implemented optimizations include:
 
