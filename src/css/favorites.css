@@ -221,6 +221,10 @@
   text-overflow: ellipsis;
 }
 
+.favorite-card-title::first-letter {
+  text-transform: uppercase;
+}
+
 /* Нижня панель характеристик */
 .favorite-card-info {
   display: flex;
