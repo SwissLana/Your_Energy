@@ -1,149 +1,379 @@
-# Your Energy
+# Your Energy 
 
-Your Energy is a responsive fitness web application that helps users discover exercises, explore workout categories, save favorite workouts, and submit ratings.
+A modern responsive fitness web application that helps users discover workouts, explore exercise categories, manage personalized favorites, submit ratings, and stay motivated with daily fitness inspiration.
+
+Built as a production-style frontend application using modular JavaScript architecture, REST API integration, LocalStorage persistence, and responsive UI implementation.
 
 ## Live Demo
-https://swisslana.github.io/Your_Energy/
+
+🔗 https://swisslana.github.io/Your_Energy/
 
 ---
 
-## Features
+## About the Project
 
-- Browse exercises by categories:
-  - Muscles
-  - Body Parts
-  - Equipment
+**Your Energy** is an interactive fitness platform designed to help users discover and explore workouts in an intuitive and engaging way.
 
-- Exercise search functionality
-- Exercise details modal
-- Favorites page
-- Add/remove exercises from favorites
-- Quote of the day section
-- Exercise rating modal
-- Email subscription form
+The application allows users to:
+
+- browse exercise categories dynamically
+- filter workouts by muscles, body parts, or equipment
+- search exercises by keyword
+- view detailed workout information
+- save favorite exercises for quick access
+- submit exercise ratings
+- subscribe to workout updates
+- stay motivated with daily inspirational fitness quotes
+
+This project was developed as the **final Advanced JavaScript project**, with a strong focus on scalable frontend architecture, asynchronous API communication, reusable UI components, and responsive user experience.
+
+---
+
+## Core Features
+
+### Exercise Discovery
+
+Users can browse exercises using dynamic backend-powered filters:
+
+- **Muscles**
+- **Body Parts**
+- **Equipment**
+
+Categories are loaded directly from the API and rendered dynamically.
+
+---
+
+### Smart Exercise Search
+
+Exercises can be searched based on:
+
+- selected filter
+- selected category
+- keyword query
+- current page
+
+This creates a realistic production-like filtering experience.
+
+---
+
+### Server-Side Pagination
+
+Implemented server-side pagination for efficient data loading and scalability.
+
+Benefits:
+
+- reduced frontend memory load
+- faster rendering
+- better UX for large datasets
+
+---
+
+### Exercise Details Modal
+
+Each exercise includes a detailed modal window containing:
+
+- exercise name
+- calories burned
+- target muscle
+- body part
+- popularity
+- rating
+- description
+- video preview (if available)
+
+Users can interact with exercises directly from the modal.
+
+---
+
+### Favorites Management
+
+Users can:
+
+- add exercises to favorites
+- remove favorites
+- revisit saved workouts later
+
+Favorites are persisted using **LocalStorage**, preserving state between sessions.
+
+---
+
+### Rating System
+
+Users can submit ratings for exercises using:
+
+- validated email input
+- star rating selection
+- backend API submission
+
+Includes error handling and success notifications.
+
+---
+
+### Daily Motivational Quote
+
+The application loads a **Quote of the Day** from backend API.
+
+Optimization:
+
+- quote is cached in LocalStorage
+- API is called only once per day
+- reduces unnecessary network requests
+
+---
+
+### Newsletter Subscription
+
+Integrated subscription form with:
+
+- email validation
+- backend POST request
+- success/error feedback notifications
+
+---
+
+### Responsive Design
+
+Fully responsive UI implementation for:
+
+- Mobile
+- Tablet
+- Desktop
+
+Implemented according to design specifications with adaptive layouts and optimized assets.
+
+---
+
+### Additional UX Features
+
+- Mobile burger navigation
 - Scroll-to-top button
-- Responsive design:
-  - Mobile
-  - Tablet
-  - Desktop
+- Loading spinner
+- Smooth modal interactions
+- Toast notifications
+- SVG icon system
+
+---
+
+## Architecture
+
+The project follows a modular frontend architecture for maintainability and scalability.
+
+### Structure
+
+```bash
+src/
+├── css/
+├── fonts/
+├── img/
+├── js/
+│   ├── api/
+│   ├── components/
+│   ├── pages/
+│   └── utils/
+├── partials/
+├── favorites.html
+├── index.html
+├── favorites.js
+└── main.js
+```
+
+### Architectural Principles
+
+Implemented with:
+
+- separation of concerns
+- reusable UI rendering functions
+- modular component organization
+- centralized API communication
+- utility abstraction
+- scalable page-based logic
+
+This architecture improves:
+
+- maintainability
+- scalability
+- readability
+- debugging efficiency
 
 ---
 
 ## Tech Stack
 
 ### Frontend
+
 - HTML5
 - CSS3
 - JavaScript (ES6+)
 
-### Libraries
+---
+
+### API & Data
+
+- REST API
 - Axios
-- modern-normalize
-- iziToast
-
-### Build Tool
-- Vite
-
-## API Integration
-
-This project uses the **Your Energy API** provided by GoIT.
-
-API documentation:  
-https://your-energy.b.goit.study/api-docs
-
-### Main endpoints:
-
-- `/filters`
-- `/exercises`
-- `/exercises/:id`
-- `/quote`
-- `/subscription`
-- `/rating`
-
-### Storage
 - LocalStorage
-
-### Assets
-- SVG sprite icons
-- Self-hosted DM Sans fonts
 
 ---
 
-## Project Structure
+### Build & Tooling
 
-```bash
-src/
-├── css/
-│   ├── animations.css
-│   ├── base.css
-│   ├── common.css
-│   ├── container.css
-│   ├── exercise-modal.css
-│   ├── exercises.css
-│   ├── favorites-quote.css
-│   ├── favorites.css
-│   ├── fonts.css
-│   ├── footer.css
-│   ├── header.css
-│   ├── hero.css
-│   ├── quote.css
-│   ├── rating-modal.css
-│   ├── reset.css
-│   └── styles.css
-│
-├── fonts/
-│   ├── DMSans-Italic.woff2
-│   ├── DMSans-Medium.woff2
-│   └── DMSans-Regular.woff2
-│
-├── img/
-│   ├── avif/
-│   ├── jpg/
-│   ├── webp/
-│   ├── logo.svg
-│   └── sprite.svg
-│
-├── js/
-│   ├── api/
-│   │   └── exercises-api.js
-│   │
-│   ├── components/
-│   │   ├── exercise-modal.js
-│   │   ├── header.js
-│   │   ├── pagination.js
-│   │   ├── quote.js
-│   │   ├── rating-modal.js
-│   │   ├── scroll-up.js
-│   │   └── subscription.js
-│   │
-│   ├── pages/
-│   │   ├── favorites.js
-│   │   └── home.js
-│   │
-│   └── utils/
-│       ├── constants.js
-│       ├── helpers.js
-│       ├── loader.js
-│       ├── render-functions.js
-│       └── storage.js
-│
-├── partials/
-│   ├── exercises.html
-│   ├── favorites-quote.html
-│   ├── footer.html
-│   ├── header.html
-│   ├── hero.html
-│   ├── mobile-menu.html
-│   └── rating-modal.html
-│
-├── favorites.html
-├── index.html
-└── main.js
+- Vite
+- vite-plugin-html-inject
+- vite-plugin-full-reload
+- postcss-sort-media-queries
+
+---
+
+### UX & Utilities
+
+- modern-normalize
+- iziToast
+
+---
+
+### Assets
+
+- SVG sprite icons
+- self-hosted fonts
+- AVIF / WebP optimized images
+
+---
+
+## API Integration
+
+This project uses the **Your Energy API**.
+
+API documentation:
+
+https://your-energy.b.goit.study/api-docs
+
+### Endpoints Used
+
+#### Get Exercise Filters
+
+```http
+GET /filters
+```
+
+Example:
+
+```http
+GET /filters?filter=Muscles&page=1&limit=12
+```
+
+Used for:
+
+- muscles
+- body parts
+- equipment categories
+
+---
+
+#### Get Exercises
+
+```http
+GET /exercises
+```
+
+Example:
+
+```http
+GET /exercises?bodypart=back&keyword=pull&page=1&limit=10
+```
+
+Used for:
+
+- exercise listing
+- filtering
+- search
+- pagination
+
+---
+
+#### Get Exercise Details
+
+```http
+GET /exercises/:id
+```
+
+Used for:
+
+- exercise modal
+
+---
+
+#### Submit Rating
+
+```http
+PATCH /exercises/:id/rating
+```
+
+Used for:
+
+- rating modal
+
+---
+
+#### Quote of the Day
+
+```http
+GET /quote
+```
+
+Used for:
+
+- motivational quote block
+
+---
+
+#### Newsletter Subscription
+
+```http
+POST /subscription
+```
+
+Used for:
+
+- email subscription form
 ```
 
 ---
 
-## Installation
+## ⚡ Performance Optimizations
+
+Implemented optimizations include:
+
+- lazy-loaded images
+- optimized image formats:
+  - AVIF
+  - WebP
+- self-hosted fonts
+- reduced render-blocking resources
+- LocalStorage caching
+- modular code splitting
+- server-side pagination
+- optimized production build via Vite
+
+---
+
+## Technical Challenges Solved
+
+This project involved solving several real frontend engineering challenges:
+
+- asynchronous API state management
+- dynamic filtering logic
+- server-side pagination implementation
+- modal lifecycle management
+- nested modal interaction handling
+- LocalStorage synchronization
+- quote caching by date
+- reusable rendering architecture
+- responsive layout consistency
+- Vite build configuration and deployment setup
+
+---
+
+## Installation & Setup
 
 Clone the repository:
 
@@ -151,7 +381,7 @@ Clone the repository:
 git clone https://github.com/swisslana/Your_Energy.git
 ```
 
-Navigate to the project folder:
+Navigate to project folder:
 
 ```bash
 cd Your_Energy
@@ -175,6 +405,12 @@ Build production version:
 npm run build
 ```
 
+Preview production build:
+
+```bash
+npm run preview
+```
+
 Deploy:
 
 ```bash
@@ -183,32 +419,39 @@ npm run deploy
 
 ---
 
-## Performance & Quality
+## Quality Standards
 
-Project requirements:
+Project meets:
 
-- Semantic HTML
-- Responsive layout
-- Pixel-perfect implementation
-- Cross-browser compatibility
-- Accessibility support
-- Optimized images
-- Favicon
-- Clean console (no errors)
-- Validator compliant HTML/CSS
-- Lighthouse score 90+
+- semantic HTML requirements
+- responsive design standards
+- cross-browser compatibility
+- clean code architecture
+- modular frontend structure
+- API integration best practices
+- optimized asset loading
+- favicon support
+- no console errors
+- validator-compliant HTML/CSS
+- Lighthouse performance optimization
 
-## Performance Optimizations
+---
 
-- Self-hosted fonts
-- Optimized image formats:
-  - AVIF
-  - WebP
-- Delayed loader rendering to prevent flicker
-- Lazy loading for API-loaded images
-- Reduced render-blocking external resources
-- SVG sprite icon system
+## Future Improvements
 
+Potential next features:
 
+- user authentication
+- personal workout plans
+- workout progress tracking
+- exercise history
+- dark mode
+- advanced filtering
+- backend user profiles
+- personalized recommendations
 
+---
 
+## License
+
+This project was created for educational and portfolio purposes.
