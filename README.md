@@ -41,8 +41,6 @@ Users can browse exercises using dynamic backend-powered filters:
 
 Categories are loaded directly from the API and rendered dynamically.
 
----
-
 ### Smart Exercise Search
 
 Exercises can be searched based on:
@@ -54,8 +52,6 @@ Exercises can be searched based on:
 
 This creates a realistic production-like filtering experience.
 
----
-
 ### Server-Side Pagination
 
 Implemented server-side pagination for efficient data loading and scalability.
@@ -65,8 +61,6 @@ Benefits:
 - reduced frontend memory load
 - faster rendering
 - better UX for large datasets
-
----
 
 ### Exercise Details Modal
 
@@ -83,8 +77,6 @@ Each exercise includes a detailed modal window containing:
 
 Users can interact with exercises directly from the modal.
 
----
-
 ### Favorites Management
 
 Users can:
@@ -94,8 +86,6 @@ Users can:
 - revisit saved workouts later
 
 Favorites are persisted using **LocalStorage**, preserving state between sessions.
-
----
 
 ### Rating System
 
@@ -107,8 +97,6 @@ Users can submit ratings for exercises using:
 
 Includes error handling and success notifications.
 
----
-
 ### Daily Motivational Quote
 
 The application loads a **Quote of the Day** from backend API.
@@ -119,8 +107,6 @@ Optimization:
 - API is called only once per day
 - reduces unnecessary network requests
 
----
-
 ### Newsletter Subscription
 
 Integrated subscription form with:
@@ -128,8 +114,6 @@ Integrated subscription form with:
 - email validation
 - backend POST request
 - success/error feedback notifications
-
----
 
 ### Responsive Design
 
@@ -140,8 +124,6 @@ Fully responsive UI implementation for:
 - Desktop
 
 Implemented according to design specifications with adaptive layouts and optimized assets.
-
----
 
 ### Additional UX Features
 
@@ -205,15 +187,11 @@ This architecture improves:
 - CSS3
 - JavaScript (ES6+)
 
----
-
 ### API & Data
 
 - REST API
 - Axios
 - LocalStorage
-
----
 
 ### Build & Tooling
 
@@ -222,14 +200,10 @@ This architecture improves:
 - vite-plugin-full-reload
 - postcss-sort-media-queries
 
----
-
 ### UX & Utilities
 
 - modern-normalize
 - iziToast
-
----
 
 ### Assets
 
@@ -267,8 +241,6 @@ Used for:
 - body parts
 - equipment categories
 
----
-
 #### Get Exercises
 
 ```http
@@ -288,8 +260,6 @@ Used for:
 - search
 - pagination
 
----
-
 #### Get Exercise Details
 
 ```http
@@ -299,8 +269,6 @@ GET /exercises/:id
 Used for:
 
 - exercise modal
-
----
 
 #### Submit Rating
 
@@ -312,8 +280,6 @@ Used for:
 
 - rating modal
 
----
-
 #### Quote of the Day
 
 ```http
@@ -324,8 +290,6 @@ Used for:
 
 - motivational quote block
 
----
-
 #### Newsletter Subscription
 
 ```http
@@ -335,7 +299,6 @@ POST /subscription
 Used for:
 
 - email subscription form
-```
 
 ---
 
@@ -354,8 +317,6 @@ Implemented optimizations include:
 - server-side pagination
 - optimized production build via Vite
 
----
-
 ## Technical Challenges Solved
 
 This project involved solving several real frontend engineering challenges:
@@ -370,8 +331,6 @@ This project involved solving several real frontend engineering challenges:
 - reusable rendering architecture
 - responsive layout consistency
 - Vite build configuration and deployment setup
-
----
 
 ## Installation & Setup
 
@@ -417,8 +376,6 @@ Deploy:
 npm run deploy
 ```
 
----
-
 ## Quality Standards
 
 Project meets:
@@ -434,8 +391,6 @@ Project meets:
 - no console errors
 - validator-compliant HTML/CSS
 - Lighthouse performance optimization
-
----
 
 ## Future Improvements
 
